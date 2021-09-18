@@ -1,6 +1,6 @@
 Hello and welcome to **Beautiful CSS**, a curated list of CSS styles and components that you can easily copy and use on your projects!
 
-Right now the project is still undergoing but you can explore \__beautiful_ styles for:
+Right now the project is still undergoing but you can explore **beautiful styles** for:
 
 - buttons
 - box-shadows

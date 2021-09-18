@@ -1,4 +1,4 @@
-const netlify = require('@sveltejs/adapter-netlify');
+import adapter from '@sveltejs/adapter-netlify';
 
 // https://kit.svelte.dev/docs#adapters
 
@@ -7,7 +7,7 @@ const config = {
 	kit: {
 		// hydrate the <div id="svelte"> element in src/app.html
 		target: '#svelte',
-		adapter: netlify()
+		adapter: adapter()
 	}
 };
 

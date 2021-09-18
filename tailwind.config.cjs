@@ -20,6 +20,9 @@ module.exports = {
 			},
 			animation: {
 				'pulse-slow': 'pulse 10s linear infinite'
+			},
+			screens: {
+				'sm-md': '900px'
 			}
 		}
 	}

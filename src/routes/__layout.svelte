@@ -9,6 +9,20 @@
 
 <svelte:head>
 	<meta name="robots" content="noindex" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Beautiful CSS" />
+	<meta
+		name="twitter:description"
+		content="A curated list of CSS styles and components that you can easily copy and use on your projects!"
+	/>
+	<meta name="twitter:url" content="https://beautifulcss.dev/" />
+	<meta
+		name="twitter:image"
+		content="https://raw.githubusercontent.com/ItzaMi/beautiful-css/main/static/cover.jpeg"
+	/>
+	<meta name="twitter:image:alt" content="Beautiful CSS" />
+	<meta name="twitter:creator" content="@HeyItzaMi" />
+	<meta name="twitter:site" content="@HeyItzaMi" />
 </svelte:head>
 
 <nav class="navBar">

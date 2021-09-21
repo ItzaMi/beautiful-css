@@ -36,7 +36,7 @@
 <div
 	id={`button-${index}`}
 	class="flex flex-150 h-75 justify-center items-center text-gray-400 font-light rounded-md cursor-pointer"
-	on:click={() => copyToClipboard(button.style)}
+	on:click={() => copyToClipboard(button.copy)}
 >
 	Button {text}
 </div>

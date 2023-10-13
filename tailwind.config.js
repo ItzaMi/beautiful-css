@@ -1,12 +1,9 @@
-module.exports = {
-	purge: [
-		'./src/**/*.svelte',
-		// may also want to include HTML files
-		'./src/**/*.html'
-	],
-	theme: {
-		extend: {
-			colors: {
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./src/**/*.{html,js,svelte,ts}'],
+  theme: {
+    extend: {
+      colors: {
 				'regal-blue': '#1f4d8f',
 				'peaceful-white': '#fff'
 			},
@@ -25,5 +22,7 @@ module.exports = {
 				'sm-md': '900px'
 			}
 		}
-	}
-};
+  },
+  plugins: [],
+}
+

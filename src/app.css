@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
 	font-family: 'Work Sans', sans-serif;
 	background: white;
@@ -7,4 +11,18 @@
 
 body {
 	margin: 0;
+}
+
+@layer components {
+    .navLink {
+        @apply text-regal-blue hover:text-opacity-70 transition-opacity duration-500 ease-in-out;
+    }
+
+    .navBar {
+        @apply fixed z-10 w-full px-10 py-8 bg-peaceful-white flex flex-row items-center space-x-10 border-regal-blue border-b-2;
+    }
+
+    .footer {
+        @apply w-full mt-32 px-10 py-8 flex flex-row justify-between items-center border-regal-blue border-t-2;
+    }
 }

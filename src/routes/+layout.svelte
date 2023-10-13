@@ -1,10 +1,12 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
+	let path: string;
 
-	import '../tailwind.css';
+	$: path = $page.url.pathname;
+
 	import '../app.css';
 
-	import GitHub from '../components/icons/GitHub.svelte';
+	import Github from '$lib/components/icons/github.svelte';
 </script>
 
 <svelte:head>
@@ -26,15 +28,13 @@
 </svelte:head>
 
 <nav class="navBar">
-	<a href="." class={`navLink ${$page.path === '/' ? 'font-semibold' : 'font-normal'}`}>Home</a>
+	<a href="." class={`navLink ${path === '/' ? 'font-semibold' : 'font-normal'}`}>Home</a>
 	<a
 		href="/box-shadows"
-		class={`navLink ${$page.path === '/box-shadows' ? 'font-semibold' : 'font-normal'}`}
-		>Box-Shadows</a
+		class={`navLink ${path === '/box-shadows' ? 'font-semibold' : 'font-normal'}`}>Box-Shadows</a
 	>
-	<a
-		href="/buttons"
-		class={`navLink ${$page.path === '/buttons' ? 'font-semibold' : 'font-normal'}`}>Buttons</a
+	<a href="/buttons" class={`navLink ${path === '/buttons' ? 'font-semibold' : 'font-normal'}`}
+		>Buttons</a
 	>
 </nav>
 <div class="max-w-screen-xl m-auto">
@@ -51,6 +51,6 @@
 		target="_blank"
 		class="hover:opacity-70 transition-opacity duration-500 ease-in-out"
 	>
-		<GitHub />
+		<Github />
 	</a>
 </footer>

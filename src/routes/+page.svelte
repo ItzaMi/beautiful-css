@@ -1,5 +1,5 @@
 <script>
-	import Arrow from '../components/icons/Arrow.svelte';
+	import Arrow from '$lib/components/icons/arrow.svelte';
 	export const prerender = true;
 </script>
 

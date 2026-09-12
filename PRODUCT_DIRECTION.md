@@ -9,8 +9,26 @@ Developers use it when the functional interface already exists but needs more ch
 expressive heading, a responsive visual background, a richer hover state, a better transition, or
 a memorable way to reveal content.
 
-The product is the component source code. The website exists to let people experience that code,
-understand its API, and copy or install it.
+The product is the component source code. The website exists to render the exact files people
+receive, explain their API, and let people copy or install them.
+
+## Reference implementation and portability
+
+React is the first supported implementation and the implementation exercised by the catalogue.
+Beautiful CSS does not claim framework support that it does not test.
+
+Portability comes from the component structure rather than a universal runtime abstraction:
+
+- canonical visual behaviour stays in a colocated CSS file;
+- framework-neutral geometry and pointer calculations stay in small TypeScript controllers when
+  an effect needs JavaScript;
+- the React file owns only markup, lifecycle integration, and the public prop contract;
+- future Vue or Svelte adapters must render the same scenarios and pass the same visual and
+  accessibility checks before being advertised.
+
+A component is one removable visual behaviour. A block is a larger, framework-specific composition
+built from components and the consumer's existing primitives. Blocks do not become a substitute UI
+framework.
 
 ## The boundary
 
@@ -62,9 +80,10 @@ lock on basic functionality.
 
 ### Optional installation tools
 
-Components may later be distributed through a shadcn-compatible registry or an agent helper. These
-are delivery mechanisms only. They do not define the product and should never be required to use
-the source.
+Components are distributed as editable source through the catalogue and a shadcn-compatible GitHub
+registry. The registry is a delivery mechanism only; the files remain readable and copyable without
+it. Shared npm packages may be introduced later only for controller logic that genuinely benefits
+from versioned reuse.
 
 ## Design position
 
@@ -94,6 +113,10 @@ It must:
 7. include a realistic usage example;
 8. be tested in the actual catalogue, not represented by a fake preview.
 
+Every component and block also has an isolated preview route. Playwright captures desktop,
+mobile/touch, reduced-motion, and meaningful interaction states. Baseline changes are reviewed as
+product changes; green snapshots confirm consistency, not aesthetic quality by themselves.
+
 ## Catalogue experience
 
 The catalogue is a working surface, not a wall of thumbnails. Visitors choose one component and
@@ -101,8 +124,8 @@ experience it at a useful size, change real properties, try its keyboard behavio
 small usage example without leaving the page.
 
 The website should keep one component in focus at a time. It must not imply quality through mock
-previews, decorative cards, or a large inventory count. The source and the interaction are the
-proof.
+previews, decorative cards, or a large inventory count. The source shown in the catalogue is read
+from the same files the registry distributes. The source and the interaction are the proof.
 
 ## Initial collection
 

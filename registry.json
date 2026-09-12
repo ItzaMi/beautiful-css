@@ -1,0 +1,191 @@
+{
+	"$schema": "https://ui.shadcn.com/schema/registry.json",
+	"name": "beautiful-css",
+	"homepage": "https://github.com/ItzaMi/beautiful-css",
+	"items": [
+		{
+			"name": "line-reveal",
+			"type": "registry:component",
+			"title": "Line Reveal",
+			"description": "Masked, staggered text entrance with a readable reduced-motion state.",
+			"files": [
+				{
+					"path": "src/components/beautiful/line-reveal/line-reveal.tsx",
+					"type": "registry:component",
+					"target": "@components/beautiful/line-reveal/line-reveal.tsx"
+				},
+				{
+					"path": "src/components/beautiful/line-reveal/line-reveal.css",
+					"type": "registry:file",
+					"target": "@components/beautiful/line-reveal/line-reveal.css"
+				},
+				{
+					"path": "src/components/beautiful/types.ts",
+					"type": "registry:file",
+					"target": "@components/beautiful/types.ts"
+				}
+			]
+		},
+		{
+			"name": "character-shift",
+			"type": "registry:component",
+			"title": "Character Shift",
+			"description": "A pointer and keyboard character exchange for expressive links.",
+			"files": [
+				{
+					"path": "src/components/beautiful/character-shift/character-shift.tsx",
+					"type": "registry:component",
+					"target": "@components/beautiful/character-shift/character-shift.tsx"
+				},
+				{
+					"path": "src/components/beautiful/character-shift/character-shift.css",
+					"type": "registry:file",
+					"target": "@components/beautiful/character-shift/character-shift.css"
+				},
+				{
+					"path": "src/components/beautiful/types.ts",
+					"type": "registry:file",
+					"target": "@components/beautiful/types.ts"
+				}
+			]
+		},
+		{
+			"name": "signal-marquee",
+			"type": "registry:component",
+			"title": "Signal Marquee",
+			"description": "A continuous contextual text rail with controllable motion.",
+			"files": [
+				{
+					"path": "src/components/beautiful/signal-marquee/signal-marquee.tsx",
+					"type": "registry:component",
+					"target": "@components/beautiful/signal-marquee/signal-marquee.tsx"
+				},
+				{
+					"path": "src/components/beautiful/signal-marquee/signal-marquee.css",
+					"type": "registry:file",
+					"target": "@components/beautiful/signal-marquee/signal-marquee.css"
+				},
+				{
+					"path": "src/components/beautiful/types.ts",
+					"type": "registry:file",
+					"target": "@components/beautiful/types.ts"
+				}
+			]
+		},
+		{
+			"name": "cursor-field",
+			"type": "registry:component",
+			"title": "Cursor Field",
+			"description": "A frame-throttled, pointer-responsive ambient field.",
+			"files": [
+				{
+					"path": "src/components/beautiful/cursor-field/cursor-field.tsx",
+					"type": "registry:component",
+					"target": "@components/beautiful/cursor-field/cursor-field.tsx"
+				},
+				{
+					"path": "src/components/beautiful/cursor-field/cursor-field.css",
+					"type": "registry:file",
+					"target": "@components/beautiful/cursor-field/cursor-field.css"
+				},
+				{
+					"path": "src/components/beautiful/types.ts",
+					"type": "registry:file",
+					"target": "@components/beautiful/types.ts"
+				}
+			]
+		},
+		{
+			"name": "focus-beam",
+			"type": "registry:component",
+			"title": "Focus Beam",
+			"description": "A visual field that follows pointer position and keyboard focus.",
+			"files": [
+				{
+					"path": "src/components/beautiful/focus-beam/focus-beam.tsx",
+					"type": "registry:component",
+					"target": "@components/beautiful/focus-beam/focus-beam.tsx"
+				},
+				{
+					"path": "src/components/beautiful/focus-beam/focus-beam.css",
+					"type": "registry:file",
+					"target": "@components/beautiful/focus-beam/focus-beam.css"
+				},
+				{
+					"path": "src/components/beautiful/types.ts",
+					"type": "registry:file",
+					"target": "@components/beautiful/types.ts"
+				}
+			]
+		},
+		{
+			"name": "proximity-grid",
+			"type": "registry:component",
+			"title": "Proximity Grid",
+			"description": "A frame-throttled geometric field that responds to proximity.",
+			"files": [
+				{
+					"path": "src/components/beautiful/proximity-grid/proximity-grid.tsx",
+					"type": "registry:component",
+					"target": "@components/beautiful/proximity-grid/proximity-grid.tsx"
+				},
+				{
+					"path": "src/components/beautiful/proximity-grid/proximity-grid.css",
+					"type": "registry:file",
+					"target": "@components/beautiful/proximity-grid/proximity-grid.css"
+				},
+				{
+					"path": "src/components/beautiful/types.ts",
+					"type": "registry:file",
+					"target": "@components/beautiful/types.ts"
+				}
+			]
+		},
+		{
+			"name": "media-shutter",
+			"type": "registry:component",
+			"title": "Media Shutter",
+			"description": "A directional media reveal with touch and reduced-motion fallbacks.",
+			"files": [
+				{
+					"path": "src/components/beautiful/media-shutter/media-shutter.tsx",
+					"type": "registry:component",
+					"target": "@components/beautiful/media-shutter/media-shutter.tsx"
+				},
+				{
+					"path": "src/components/beautiful/media-shutter/media-shutter.css",
+					"type": "registry:file",
+					"target": "@components/beautiful/media-shutter/media-shutter.css"
+				},
+				{
+					"path": "src/components/beautiful/types.ts",
+					"type": "registry:file",
+					"target": "@components/beautiful/types.ts"
+				}
+			]
+		},
+		{
+			"name": "edge-trace",
+			"type": "registry:component",
+			"title": "Edge Trace",
+			"description": "A restrained animated perimeter for arbitrary content.",
+			"files": [
+				{
+					"path": "src/components/beautiful/edge-trace/edge-trace.tsx",
+					"type": "registry:component",
+					"target": "@components/beautiful/edge-trace/edge-trace.tsx"
+				},
+				{
+					"path": "src/components/beautiful/edge-trace/edge-trace.css",
+					"type": "registry:file",
+					"target": "@components/beautiful/edge-trace/edge-trace.css"
+				},
+				{
+					"path": "src/components/beautiful/types.ts",
+					"type": "registry:file",
+					"target": "@components/beautiful/types.ts"
+				}
+			]
+		}
+	]
+}

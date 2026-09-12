@@ -1,0 +1,49 @@
+.bc-signal-marquee {
+	overflow: hidden;
+	width: 100%;
+	mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.bc-signal-marquee__track {
+	display: flex;
+	width: max-content;
+	animation: bc-marquee-travel var(--marquee-duration) linear infinite;
+}
+
+.bc-signal-marquee.pauses-on-hover:hover .bc-signal-marquee__track,
+.bc-signal-marquee.is-paused .bc-signal-marquee__track {
+	animation-play-state: paused;
+}
+
+.bc-signal-marquee.is-reversed .bc-signal-marquee__track {
+	animation-direction: reverse;
+}
+
+.bc-signal-marquee__track span {
+	display: inline-flex;
+	align-items: center;
+	gap: 2rem;
+	padding-right: 2rem;
+	white-space: nowrap;
+}
+
+.bc-signal-marquee__track i {
+	width: 0.22em;
+	height: 0.22em;
+	background: currentColor;
+	border-radius: 50%;
+	opacity: 0.45;
+}
+
+@keyframes bc-marquee-travel {
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bc-signal-marquee__track {
+		animation: none;
+		transform: none;
+	}
+}

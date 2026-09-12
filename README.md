@@ -1,10 +1,10 @@
 # Beautiful CSS
 
-Original CSS-first visual components for the part of an interface people remember.
+Original React and CSS source components for the part of an interface people remember.
 
-Beautiful CSS provides text treatments, backgrounds, pointer effects, media reveals, and
-decorative surfaces. It does not replace accessible UI primitives: keep native HTML, Radix,
-shadcn/ui, Bits UI, or React Aria underneath.
+Beautiful CSS provides text treatments, backgrounds, pointer effects, media reveals, and decorative
+surfaces. It does not replace accessible UI primitives: keep native HTML, Radix, shadcn/ui, or React
+Aria underneath.
 
 The current local collection includes:
 
@@ -20,23 +20,57 @@ The current local collection includes:
 Read [PRODUCT_DIRECTION.md](./PRODUCT_DIRECTION.md) for the product boundary, free/Pro model, and
 component quality bar.
 
+React is the first supported implementation. Each item keeps its visual behaviour in colocated CSS
+so that future framework adapters can share the effect without pretending untested compatibility.
+
 ## Develop locally
 
 ```bash
-npm install
-npm run dev
+yarn install
+yarn dev
 ```
 
-Then open `http://localhost:5173`.
+Then open `http://localhost:3000`.
+
+## Distribution
+
+`registry.json` makes the repository a shadcn-compatible GitHub source registry. The same component
+and CSS files are rendered in the catalogue and included in registry items, so there is no generated
+distribution copy to drift.
+
+After the repository is public, an item can be installed with:
+
+```bash
+npx shadcn@latest add ItzaMi/beautiful-css/line-reveal
+```
+
+Complete source remains copyable from the catalogue without the CLI.
+
+## Visual validation
+
+Every registered component is rendered through an isolated `/preview/component/[id]` route.
+Playwright compares desktop, mobile/touch, reduced-motion, and interaction screenshots.
+
+```bash
+yarn test:visual
+yarn test:visual:update  # intentionally accept reviewed changes
+yarn test:visual:report  # inspect failures and image diffs
+```
+
+Blocks use the same harness. Add a focused preview to `src/blocks/preview-registry.tsx`, then register
+its id in `src/data/visual-cases.ts`; it enters the same viewport matrix. Baselines are
+platform-specific and should be updated in the same environment used for review.
 
 ## Checks
 
 ```bash
-npm run check
-npm run lint
-npm run build
+yarn typecheck
+yarn lint
+yarn build
+yarn registry:validate
+yarn test:visual
 ```
 
 ## Project state
 
-The visual-component collection is currently a local concept. It has not been deployed.
+The React catalogue and source registry are currently local. They have not been deployed.

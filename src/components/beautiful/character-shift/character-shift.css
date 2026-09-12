@@ -1,0 +1,42 @@
+.bc-character-shift {
+	display: inline-flex;
+	padding: 0.1em 0;
+	color: inherit;
+	cursor: pointer;
+	line-height: 1;
+	text-decoration: none;
+}
+
+.bc-character-shift__character {
+	display: inline-grid;
+	overflow: hidden;
+}
+
+.bc-character-shift__character span {
+	display: block;
+	grid-area: 1 / 1;
+	transition: transform var(--character-duration) cubic-bezier(0.16, 1, 0.3, 1);
+	transition-delay: calc(var(--character-index) * 16ms);
+}
+
+.bc-character-shift__character span:last-child {
+	color: var(--character-accent, currentColor);
+	transform: translateY(100%);
+}
+
+.bc-character-shift:hover .bc-character-shift__character span,
+.bc-character-shift:focus-visible .bc-character-shift__character span {
+	transform: translateY(-100%);
+}
+
+.bc-character-shift:hover .bc-character-shift__character span:last-child,
+.bc-character-shift:focus-visible .bc-character-shift__character span:last-child {
+	transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bc-character-shift__character span {
+		transition-duration: 1ms;
+		transition-delay: 0ms;
+	}
+}

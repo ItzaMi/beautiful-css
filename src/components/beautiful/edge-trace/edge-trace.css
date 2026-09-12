@@ -1,0 +1,52 @@
+@property --trace-angle {
+	syntax: '<angle>';
+	inherits: false;
+	initial-value: 0deg;
+}
+
+.bc-edge-trace {
+	position: relative;
+	padding: var(--trace-width);
+	overflow: hidden;
+	border-radius: var(--trace-radius);
+	isolation: isolate;
+}
+
+.bc-edge-trace__line {
+	position: absolute;
+	z-index: -2;
+	inset: -120%;
+	background: conic-gradient(
+		from var(--trace-angle),
+		transparent 0 42%,
+		var(--trace-color) 48% 52%,
+		transparent 58% 100%
+	);
+	animation: bc-edge-trace var(--trace-duration) linear infinite paused;
+}
+
+.bc-edge-trace.is-active .bc-edge-trace__line,
+.bc-edge-trace:hover .bc-edge-trace__line,
+.bc-edge-trace:focus-within .bc-edge-trace__line {
+	animation-play-state: running;
+}
+
+.bc-edge-trace__content {
+	height: 100%;
+	background: var(--trace-background, #111310);
+	border-radius: max(0px, calc(var(--trace-radius) - var(--trace-width)));
+}
+
+@keyframes bc-edge-trace {
+	to {
+		--trace-angle: 360deg;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bc-edge-trace__line {
+		animation: none;
+		background: var(--trace-color);
+		opacity: 0.8;
+	}
+}

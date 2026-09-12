@@ -18,7 +18,6 @@
 	<nav aria-label="Primary navigation">
 		<a href="/#collection">Components</a>
 		<a href="/#principles">Principles</a>
-		<a href="/buttons">Archive</a>
 		<a href="https://github.com/ItzaMi/beautiful-css" target="_blank" rel="noreferrer">
 			<span>GitHub</span><Github />
 		</a>

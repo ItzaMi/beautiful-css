@@ -9,7 +9,7 @@
 	let pointerX = 50;
 	let pointerY = 50;
 	let active = false;
-	let points: Array<{ x: number; y: number; size: number; delay: number }> = [];
+	let points: Array<{ x: number; y: number; size: number }> = [];
 
 	function createPoints(total: number) {
 		return Array.from({ length: total }, (_, index) => {
@@ -18,8 +18,7 @@
 			return {
 				x: 8 + column * 10.5 + ((row * 7 + column * 3) % 5),
 				y: 9 + row * 17 + ((column * 5 + row * 2) % 8),
-				size: 2 + ((index * 7) % 5),
-				delay: (index * 37) % 900
+				size: 2 + ((index * 7) % 5)
 			};
 		});
 	}
@@ -31,6 +30,18 @@
 		pointerX = ((event.clientX - bounds.left) / bounds.width) * 100;
 		pointerY = ((event.clientY - bounds.top) / bounds.height) * 100;
 		active = true;
+	}
+
+	function pointProximity(
+		x: number,
+		y: number,
+		currentX: number,
+		currentY: number,
+		isActive: boolean
+	) {
+		if (!isActive) return 0;
+		const distance = Math.hypot((currentX - x) * 0.78, currentY - y);
+		return Math.max(0, Math.min(1, 1 - distance / 25));
 	}
 
 	onMount(() => {
@@ -50,8 +61,13 @@
 >
 	<div class="halo" />
 	{#each points as point}
+		{@const pointAmount = pointProximity(point.x, point.y, pointerX, pointerY, active)}
 		<i
-			style={`--x: ${point.x}%; --y: ${point.y}%; --size: ${point.size}px; --delay: ${point.delay}ms`}
+			style={`--x: ${point.x}%; --y: ${point.y}%; --size: ${
+				point.size
+			}px; --point-signal: ${Math.min(1, (0.14 + pointAmount * 0.72) * strength)}; --point-glow: ${
+				24 + pointAmount * 60
+			}%; --point-scale: ${0.86 + pointAmount * 0.72}`}
 		/>
 	{/each}
 </div>
@@ -93,30 +109,14 @@
 		height: var(--size);
 		background: var(--field-color);
 		border-radius: 50%;
-		opacity: calc(0.18 * var(--field-strength));
-		box-shadow: 0 0 calc(var(--size) * 3) color-mix(in srgb, var(--field-color) 55%, transparent);
-		animation: breathe 3.6s ease-in-out infinite alternate;
-		animation-delay: var(--delay);
-		transform: translate(-50%, -50%);
-		transition: opacity 240ms ease, box-shadow 240ms ease;
-	}
-
-	.active i {
-		opacity: calc(0.42 * var(--field-strength));
-	}
-
-	@keyframes breathe {
-		to {
-			opacity: calc(0.7 * var(--field-strength));
-			transform: translate(-50%, -50%) scale(1.55);
-		}
+		opacity: var(--point-signal);
+		box-shadow: 0 0 12px color-mix(in srgb, var(--field-color) var(--point-glow), transparent);
+		transform: translate(-50%, -50%) scale(var(--point-scale));
+		transition: opacity 120ms ease, box-shadow 160ms ease,
+			transform 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		i {
-			animation: none;
-		}
-
 		.halo {
 			transition: none;
 		}

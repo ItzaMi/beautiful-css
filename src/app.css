@@ -41,8 +41,6 @@ a {
 }
 
 .site-header,
-.library-intro,
-.library-layout,
 .boundary,
 .site-footer {
 	width: min(1280px, calc(100% - 48px));
@@ -148,298 +146,6 @@ a {
 	text-decoration: none;
 }
 
-.library-intro {
-	display: flex;
-	align-items: flex-end;
-	justify-content: space-between;
-	gap: 3rem;
-	padding: clamp(7rem, 12vw, 11rem) 0 clamp(4rem, 7vw, 6rem);
-	scroll-margin-top: 70px;
-}
-
-.library-intro h2,
-.library-intro p {
-	margin: 0;
-}
-
-.library-intro h2 {
-	font-size: clamp(2.2rem, 4.6vw, 4.7rem);
-	font-weight: 560;
-	letter-spacing: -0.055em;
-}
-
-.library-intro p {
-	max-width: 610px;
-	margin-top: 1rem;
-	color: #6f736c;
-	font-size: 0.8rem;
-	line-height: 1.65;
-}
-
-.library-intro > span {
-	padding-bottom: 0.35rem;
-	color: #848880;
-	font-size: 0.62rem;
-	white-space: nowrap;
-}
-
-.library-layout {
-	display: grid;
-	grid-template-columns: 176px minmax(0, 1fr);
-	gap: clamp(2rem, 5vw, 5rem);
-}
-
-.component-index {
-	position: sticky;
-	top: 24px;
-	align-self: start;
-	padding-top: 1rem;
-	border-top: 1px solid #d9dbd5;
-}
-
-.component-index > p {
-	margin: 0 0 1rem;
-	font-size: 0.66rem;
-	font-weight: 600;
-}
-
-.component-index nav {
-	display: grid;
-	gap: 0.15rem;
-}
-
-.component-index nav a {
-	display: grid;
-	grid-template-columns: 1.5rem 1fr;
-	padding: 0.32rem 0;
-	color: #747871;
-	font-size: 0.61rem;
-	text-decoration: none;
-}
-
-.component-index nav a:hover {
-	color: #111310;
-}
-
-.component-index nav span {
-	color: #a1a49e;
-	font-variant-numeric: tabular-nums;
-}
-
-.direction-link {
-	display: inline-block;
-	margin-top: 1.5rem;
-	padding-bottom: 0.2rem;
-	color: #60645e;
-	border-bottom: 1px solid #a9aca6;
-	font-size: 0.6rem;
-	text-decoration: none;
-}
-
-.component-list {
-	min-width: 0;
-}
-
-.demo-controls {
-	display: flex;
-	gap: 0.4rem;
-}
-
-.demo-controls button {
-	padding: 0.38rem 0.5rem;
-	color: #5f625d;
-	background: transparent;
-	border: 1px solid #cfd1cb;
-	border-radius: 3px;
-	font-size: 0.56rem;
-}
-
-.demo-controls button:hover {
-	color: #111310;
-	border-color: #999d95;
-}
-
-.swatch-controls button {
-	width: 1.35rem;
-	height: 1.35rem;
-	padding: 3px;
-	background: var(--control-color);
-	background-clip: content-box;
-	border-radius: 50%;
-}
-
-.swatch-controls button.active {
-	border-color: #111310;
-}
-
-.line-reveal-demo {
-	padding: 2rem;
-	font-size: clamp(3rem, 8vw, 8rem);
-	font-weight: 550;
-}
-
-.character-demo {
-	display: grid;
-	gap: 2rem;
-	padding: 2rem;
-	font-size: clamp(2.6rem, 7.5vw, 7.5rem);
-	font-weight: 540;
-	letter-spacing: -0.065em;
-	text-align: center;
-}
-
-.character-demo :global(.character-shift) {
-	--character-accent: #8fa1ff;
-}
-
-.character-demo p {
-	margin: 0;
-	color: #777c73;
-	font-size: 0.62rem;
-	font-weight: 400;
-	letter-spacing: 0;
-}
-
-.marquee-demo {
-	width: 100%;
-	font-size: clamp(3.5rem, 9vw, 9rem);
-	font-weight: 570;
-	letter-spacing: -0.07em;
-}
-
-.field-demo {
-	position: absolute;
-	inset: 0;
-}
-
-.field-demo > div:last-child {
-	position: relative;
-	z-index: 1;
-	display: grid;
-	box-sizing: border-box;
-	height: 100%;
-	padding: clamp(2rem, 5vw, 5rem);
-	pointer-events: none;
-	place-content: center;
-	text-align: center;
-}
-
-.field-demo strong,
-.field-demo span {
-	display: block;
-}
-
-.field-demo strong {
-	font-size: clamp(2.4rem, 6vw, 6rem);
-	font-weight: 540;
-	letter-spacing: -0.06em;
-}
-
-.field-demo span {
-	margin-top: 0.8rem;
-	color: #959a91;
-	font-size: 0.68rem;
-}
-
-.beam-demo {
-	width: min(780px, calc(100% - 48px));
-}
-
-.beam-demo :global(.focus-beam) {
-	padding: 3rem;
-	border: 1px solid #2b2f2a;
-}
-
-.beam-demo nav {
-	display: grid;
-}
-
-.beam-demo nav a {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 1.5rem;
-	padding: 1.4rem 0;
-	border-bottom: 1px solid #353934;
-	text-decoration: none;
-}
-
-.beam-demo nav a:first-child {
-	border-top: 1px solid #353934;
-}
-
-.beam-demo nav span {
-	font-size: clamp(1.4rem, 3vw, 2.6rem);
-	letter-spacing: -0.045em;
-}
-
-.beam-demo nav em {
-	color: #81867d;
-	font-size: 0.6rem;
-	font-style: normal;
-}
-
-.grid-demo {
-	position: absolute;
-	inset: clamp(1.5rem, 5vw, 4rem);
-}
-
-.grid-demo p {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	padding: 1rem;
-	margin: 0;
-	color: #111310;
-	background: #edeee9;
-	font-size: clamp(2rem, 5.5vw, 5rem);
-	font-weight: 550;
-	line-height: 0.94;
-	letter-spacing: -0.06em;
-	pointer-events: none;
-	transform: translate(-50%, -50%);
-}
-
-.media-demo {
-	width: min(760px, calc(100% - 48px));
-	height: min(500px, 56vw);
-	min-height: 330px;
-}
-
-.trace-demo {
-	width: min(650px, calc(100% - 48px));
-}
-
-.trace-card {
-	display: grid;
-	min-height: 290px;
-	box-sizing: border-box;
-	padding: clamp(1.5rem, 4vw, 3rem);
-}
-
-.trace-card > span {
-	color: #969b92;
-	font-size: 0.62rem;
-}
-
-.trace-card strong {
-	align-self: center;
-	max-width: 450px;
-	font-size: clamp(2rem, 5vw, 4.6rem);
-	font-weight: 530;
-	line-height: 0.98;
-	letter-spacing: -0.06em;
-}
-
-.trace-card a {
-	align-self: end;
-	justify-self: start;
-	padding-bottom: 0.2rem;
-	border-bottom: 1px solid #747970;
-	font-size: 0.62rem;
-	text-decoration: none;
-}
-
 .boundary {
 	display: grid;
 	grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(180px, 0.5fr));
@@ -514,14 +220,6 @@ a {
 }
 
 @media (max-width: 850px) {
-	.library-layout {
-		grid-template-columns: 1fr;
-	}
-
-	.component-index {
-		display: none;
-	}
-
 	.boundary {
 		grid-template-columns: 1fr 1fr;
 	}
@@ -534,8 +232,6 @@ a {
 
 @media (max-width: 640px) {
 	.site-header,
-	.library-intro,
-	.library-layout,
 	.boundary,
 	.site-footer {
 		width: calc(100% - 28px);
@@ -546,7 +242,6 @@ a {
 	}
 
 	.site-header nav a:nth-child(2),
-	.site-header nav a:nth-child(3),
 	.site-header nav a span {
 		display: none;
 	}
@@ -563,7 +258,8 @@ a {
 	}
 
 	.hero h1 {
-		font-size: clamp(3.6rem, 19vw, 6rem);
+		font-size: clamp(3.25rem, 17vw, 5.5rem);
+		letter-spacing: -0.07em;
 	}
 
 	.hero-bottom {
@@ -572,33 +268,8 @@ a {
 		gap: 1.5rem;
 	}
 
-	.library-intro {
-		align-items: flex-start;
-		flex-direction: column;
-		gap: 1.25rem;
-	}
-
-	.library-intro > span {
-		white-space: normal;
-	}
-
-	.line-reveal-demo,
-	.character-demo {
-		padding: 1rem;
-	}
-
-	.beam-demo :global(.focus-beam) {
-		padding: 1.25rem;
-	}
-
-	.beam-demo nav a {
-		align-items: flex-start;
-		flex-direction: column;
-		gap: 0.4rem;
-	}
-
-	.media-demo {
-		height: 360px;
+	.hero-bottom p {
+		max-width: 320px;
 	}
 
 	.boundary {

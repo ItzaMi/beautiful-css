@@ -35,6 +35,7 @@
 
 	.line > span {
 		display: block;
+		white-space: nowrap;
 		animation: reveal var(--line-duration) cubic-bezier(0.22, 1, 0.36, 1) both;
 		animation-delay: calc(var(--line-index) * var(--line-delay));
 		transform-origin: left bottom;

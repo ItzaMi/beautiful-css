@@ -14,6 +14,17 @@
 		y = ((event.clientY - bounds.top) / bounds.height) * 100;
 		engaged = true;
 	}
+
+	function focusPosition(event: FocusEvent) {
+		const target = event.target;
+		if (!(target instanceof HTMLElement)) return;
+
+		const bounds = host.getBoundingClientRect();
+		const targetBounds = target.getBoundingClientRect();
+		x = ((targetBounds.left + targetBounds.width / 2 - bounds.left) / bounds.width) * 100;
+		y = ((targetBounds.top + targetBounds.height / 2 - bounds.top) / bounds.height) * 100;
+		engaged = true;
+	}
 </script>
 
 <div
@@ -23,7 +34,7 @@
 	style={`--beam-color: ${color}; --beam-radius: ${radius}px; --beam-intensity: ${intensity}; --beam-x: ${x}%; --beam-y: ${y}%`}
 	on:pointermove={updatePosition}
 	on:pointerleave={() => (engaged = false)}
-	on:focusin={() => (engaged = true)}
+	on:focusin={focusPosition}
 	on:focusout={() => (engaged = false)}
 >
 	<div class="beam" aria-hidden="true" />

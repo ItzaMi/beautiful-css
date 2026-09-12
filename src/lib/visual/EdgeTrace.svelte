@@ -3,7 +3,7 @@
 	export let width = 1;
 	export let radius = 2;
 	export let duration = 4.5;
-	export let active = true;
+	export let active = false;
 </script>
 
 <div

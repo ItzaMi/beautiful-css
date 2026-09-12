@@ -31,7 +31,7 @@ export const visualComponents: VisualComponent[] = [
 		principle: 'Pointer and keyboard focus produce the same state.',
 		usage: `<CharacterShift
   text="Read the journal"
-  alternate="Enter the archive"
+  alternate="Open the journal"
   href="/journal"
   duration={440}
 />`

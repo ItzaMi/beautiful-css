@@ -94,6 +94,16 @@ It must:
 7. include a realistic usage example;
 8. be tested in the actual catalogue, not represented by a fake preview.
 
+## Catalogue experience
+
+The catalogue is a working surface, not a wall of thumbnails. Visitors choose one component and
+experience it at a useful size, change real properties, try its keyboard behaviour, and inspect a
+small usage example without leaving the page.
+
+The website should keep one component in focus at a time. It must not imply quality through mock
+previews, decorative cards, or a large inventory count. The source and the interaction are the
+proof.
+
 ## Initial collection
 
 The first collection establishes the intended range without rebuilding application primitives:

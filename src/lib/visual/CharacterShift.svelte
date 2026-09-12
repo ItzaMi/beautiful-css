@@ -10,7 +10,7 @@
 	);
 </script>
 
-<a {href} class="character-shift" style={`--shift-duration: ${duration}ms`} aria-label={alternate}>
+<a {href} class="character-shift" style={`--shift-duration: ${duration}ms`} aria-label={text}>
 	{#each characters as character, index}
 		<span class="character" aria-hidden="true" style={`--character-index: ${index}`}>
 			<span>{character === ' ' ? '\u00a0' : character}</span>
@@ -23,7 +23,7 @@
 	.character-shift {
 		display: inline-flex;
 		padding: 0.1em 0;
-		cursor: default;
+		cursor: pointer;
 		line-height: 1;
 		outline: none;
 		text-decoration: none;

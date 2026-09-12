@@ -4,10 +4,10 @@
 </script>
 
 <svelte:head>
-	<title>Beautiful CSS — Adapt a component to your project</title>
+	<title>Beautiful CSS — Components that belong in your codebase</title>
 	<meta
 		name="description"
-		content="See how Beautiful CSS adapts an interface component to an existing codebase."
+		content="Browse original interface components and blocks, then adapt them to your product with context-aware tooling."
 	/>
 	<meta name="robots" content="noindex" />
 	<meta name="theme-color" content="#fcfcfc" />
@@ -16,8 +16,9 @@
 <header class="site-header">
 	<a class="brand" href="/">Beautiful CSS</a>
 	<nav aria-label="Primary navigation">
-		<a href="/#walkthrough">Walkthrough</a>
-		<a href="/#why-agent">Why the agent</a>
+		<a href="/#components">Components</a>
+		<a href="/#blocks">Blocks</a>
+		<a href="/#studio">Studio</a>
 		<a href="https://github.com/ItzaMi/beautiful-css" target="_blank" rel="noreferrer">
 			<span>GitHub</span>
 			<Github />
@@ -31,5 +32,5 @@
 
 <footer class="site-footer">
 	<p>Beautiful CSS</p>
-	<p>Find an interaction you like. Make it belong in your product.</p>
+	<p>Original components. Deliberate composition. Context-aware adaptation.</p>
 </footer>

@@ -1,0 +1,9 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" fill="#DDE1D8"/>
+  <rect x="70" y="70" width="1060" height="760" stroke="#111310" stroke-width="2"/>
+  <circle cx="314" cy="442" r="168" fill="#405CFF"/>
+  <rect x="502" y="234" width="426" height="414" fill="#111310"/>
+  <path d="M716 145L1056 740H376L716 145Z" fill="#F7F7F5" fill-opacity="0.92"/>
+  <path d="M91 736H1109" stroke="#111310" stroke-width="2"/>
+  <text x="94" y="790" fill="#111310" font-family="Arial, sans-serif" font-size="21" letter-spacing="1.4">STUDY IN FORM / 01</text>
+</svg>

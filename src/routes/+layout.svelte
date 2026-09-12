@@ -4,33 +4,31 @@
 </script>
 
 <svelte:head>
-	<title>Beautiful CSS — Components that belong in your codebase</title>
+	<title>Beautiful CSS — Visual components with character</title>
 	<meta
 		name="description"
-		content="Browse original interface components and blocks, then adapt them to your product with context-aware tooling."
+		content="Original CSS-first text treatments, backgrounds, pointer effects, media reveals, and visual surfaces."
 	/>
 	<meta name="robots" content="noindex" />
-	<meta name="theme-color" content="#fcfcfc" />
+	<meta name="theme-color" content="#f7f7f5" />
 </svelte:head>
 
 <header class="site-header">
-	<a class="brand" href="/">Beautiful CSS</a>
+	<a class="brand" href="/#top">Beautiful CSS</a>
 	<nav aria-label="Primary navigation">
-		<a href="/#components">Components</a>
-		<a href="/#blocks">Blocks</a>
-		<a href="/#studio">Studio</a>
+		<a href="/#collection">Components</a>
+		<a href="/#principles">Principles</a>
+		<a href="/buttons">Archive</a>
 		<a href="https://github.com/ItzaMi/beautiful-css" target="_blank" rel="noreferrer">
-			<span>GitHub</span>
-			<Github />
+			<span>GitHub</span><Github />
 		</a>
 	</nav>
 </header>
 
-<main>
-	<slot />
-</main>
+<main><slot /></main>
 
 <footer class="site-footer">
-	<p>Beautiful CSS</p>
-	<p>Original components. Deliberate composition. Context-aware adaptation.</p>
+	<strong>Beautiful CSS</strong>
+	<p>Visual components for interfaces with something to say.</p>
+	<a href="#top">Back to top</a>
 </footer>

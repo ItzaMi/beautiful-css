@@ -1,56 +1,58 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	let path: string;
-
-	$: path = $page.url.pathname;
-
 	import '../app.css';
-
 	import Github from '$lib/components/icons/github.svelte';
 </script>
 
 <svelte:head>
-	<meta name="robots" content="noindex" />
+	<title>Beautiful CSS — Opinionated polish for the interface you already have</title>
+	<meta
+		name="description"
+		content="Original CSS treatments that turn working interfaces into intentional ones. See the decisions, inspect the diff, and copy the code."
+	/>
+	<meta name="robots" content="index, follow" />
+	<meta name="theme-color" content="#3157ff" />
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content="Beautiful CSS" />
 	<meta
 		name="twitter:description"
-		content="A curated list of CSS styles and components that you can easily copy and use on your projects!"
+		content="Opinionated polish for the interface you already have."
 	/>
 	<meta name="twitter:url" content="https://beautifulcss.dev/" />
 	<meta
 		name="twitter:image"
 		content="https://raw.githubusercontent.com/ItzaMi/beautiful-css/main/static/cover.jpeg"
 	/>
-	<meta name="twitter:image:alt" content="Beautiful CSS" />
-	<meta name="twitter:creator" content="@HeyItzaMi" />
-	<meta name="twitter:site" content="@HeyItzaMi" />
 </svelte:head>
 
-<nav class="navBar">
-	<a href="." class={`navLink ${path === '/' ? 'font-semibold' : 'font-normal'}`}>Home</a>
+<a class="skip-link" href="#main-content">Skip to the treatment</a>
+
+<header class="site-header">
+	<a class="wordmark" href="/" aria-label="Beautiful CSS home">
+		<span class="wordmark-mark" aria-hidden="true">&#123; &#125;</span>
+		<span>Beautiful CSS</span>
+	</a>
+
+	<nav aria-label="Primary navigation">
+		<a href="/#workbench">Treatment</a>
+		<a href="/#anatomy">Why it works</a>
+	</nav>
+
 	<a
-		href="/box-shadows"
-		class={`navLink ${path === '/box-shadows' ? 'font-semibold' : 'font-normal'}`}>Box-Shadows</a
-	>
-	<a href="/buttons" class={`navLink ${path === '/buttons' ? 'font-semibold' : 'font-normal'}`}
-		>Buttons</a
-	>
-</nav>
-<div class="max-w-screen-xl m-auto">
-	<slot />
-</div>
-<footer class="footer">
-	<div>
-		Made by <a href="https://github.com/itzami" target="_blank" class="navLink font-semibold"
-			>Rui Sousa</a
-		>
-	</div>
-	<a
-		href="https://github.com/itzami"
+		class="header-link"
+		href="https://github.com/ItzaMi/beautiful-css"
 		target="_blank"
-		class="hover:opacity-70 transition-opacity duration-500 ease-in-out"
+		rel="noreferrer"
 	>
+		<span>View source</span>
 		<Github />
 	</a>
+</header>
+
+<main id="main-content">
+	<slot />
+</main>
+
+<footer class="site-footer">
+	<p>Beautiful CSS is an experiment by <a href="https://github.com/itzami">Rui Sousa</a>.</p>
+	<p>One treatment. Zero dependencies.</p>
 </footer>

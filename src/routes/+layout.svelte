@@ -1,56 +1,35 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	let path: string;
-
-	$: path = $page.url.pathname;
-
 	import '../app.css';
-
 	import Github from '$lib/components/icons/github.svelte';
 </script>
 
 <svelte:head>
+	<title>Beautiful CSS — Modern interface components for any stack</title>
+	<meta
+		name="description"
+		content="Original interface components built with modern CSS and just enough JavaScript."
+	/>
 	<meta name="robots" content="noindex" />
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Beautiful CSS" />
-	<meta
-		name="twitter:description"
-		content="A curated list of CSS styles and components that you can easily copy and use on your projects!"
-	/>
-	<meta name="twitter:url" content="https://beautifulcss.dev/" />
-	<meta
-		name="twitter:image"
-		content="https://raw.githubusercontent.com/ItzaMi/beautiful-css/main/static/cover.jpeg"
-	/>
-	<meta name="twitter:image:alt" content="Beautiful CSS" />
-	<meta name="twitter:creator" content="@HeyItzaMi" />
-	<meta name="twitter:site" content="@HeyItzaMi" />
+	<meta name="theme-color" content="#fcfcfc" />
 </svelte:head>
 
-<nav class="navBar">
-	<a href="." class={`navLink ${path === '/' ? 'font-semibold' : 'font-normal'}`}>Home</a>
-	<a
-		href="/box-shadows"
-		class={`navLink ${path === '/box-shadows' ? 'font-semibold' : 'font-normal'}`}>Box-Shadows</a
-	>
-	<a href="/buttons" class={`navLink ${path === '/buttons' ? 'font-semibold' : 'font-normal'}`}
-		>Buttons</a
-	>
-</nav>
-<div class="max-w-screen-xl m-auto">
+<header class="site-header">
+	<a class="brand" href="/">Beautiful CSS</a>
+	<nav aria-label="Primary navigation">
+		<a href="#components">Components</a>
+		<a href="#model">How it grows</a>
+		<a href="https://github.com/ItzaMi/beautiful-css" target="_blank" rel="noreferrer">
+			<span>GitHub</span>
+			<Github />
+		</a>
+	</nav>
+</header>
+
+<main>
 	<slot />
-</div>
-<footer class="footer">
-	<div>
-		Made by <a href="https://github.com/itzami" target="_blank" class="navLink font-semibold"
-			>Rui Sousa</a
-		>
-	</div>
-	<a
-		href="https://github.com/itzami"
-		target="_blank"
-		class="hover:opacity-70 transition-opacity duration-500 ease-in-out"
-	>
-		<Github />
-	</a>
+</main>
+
+<footer class="site-footer">
+	<p>Beautiful CSS</p>
+	<p>Original components for the interfaces you want to remember.</p>
 </footer>

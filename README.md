@@ -17,6 +17,11 @@ The current local collection includes:
 - Media Shutter
 - Edge Trace
 
+The first composed blocks are:
+
+- Editorial Project Hero
+- Project Index
+
 Read [PRODUCT_DIRECTION.md](./PRODUCT_DIRECTION.md) for the product boundary, free/Pro model, and
 component quality bar.
 
@@ -48,14 +53,22 @@ npx shadcn@latest add ItzaMi/beautiful-css/line-reveal#concept/visual-component-
 The branch suffix can be removed after the registry reaches the default branch. Complete source
 remains copyable from the catalogue without the CLI.
 
-`yarn registry:consumer` builds the current registry, installs all eight items with the real shadcn
-CLI into a disposable Next app, verifies every delivered file, and compiles that consumer. A GitHub
-ref can be checked with `yarn registry:consumer --github-ref <branch-or-commit>`.
+`yarn registry:consumer` builds the current registry, installs all eight components and both blocks
+with the real shadcn CLI into a disposable Next app, verifies every delivered file, and compiles
+that consumer. A GitHub ref can be checked with
+`yarn registry:consumer --github-ref <branch-or-commit>`.
+
+Blocks use the same address format:
+
+```bash
+npx shadcn@latest add ItzaMi/beautiful-css/editorial-project-hero#concept/visual-component-library
+npx shadcn@latest add ItzaMi/beautiful-css/project-index#concept/visual-component-library
+```
 
 ## Visual validation
 
-Every registered component is rendered through an isolated `/preview/component/[id]` route.
-Playwright compares desktop, mobile/touch, reduced-motion, and interaction screenshots.
+Every registered component and block is rendered through an isolated `/preview/[kind]/[id]` route.
+Playwright compares desktop, mobile/touch, reduced-motion, and meaningful interaction screenshots.
 
 ```bash
 yarn test:visual
@@ -65,9 +78,9 @@ yarn test:motion         # generate a review report with timed interaction frame
 yarn test:behavior       # semantic and interaction checks in Chromium, Firefox, and WebKit
 ```
 
-Blocks use the same harness. Add a focused preview to `src/blocks/preview-registry.tsx`, then register
-its id in `src/data/visual-cases.ts`; it enters the same viewport matrix. Baselines are
-platform-specific and should be updated in the same environment used for review.
+Add a focused block preview to `src/blocks/preview-registry.tsx`, then register its id in
+`src/data/visual-cases.ts`; it enters the same viewport matrix. Baselines are platform-specific and
+should be updated in the same environment used for review.
 
 The motion report is deliberately separate from pixel-diff validation: stable snapshots guard final
 states, while timed frames make easing, clipping, and intermediate interaction quality reviewable.
@@ -84,5 +97,11 @@ yarn test:visual
 
 ## Project state
 
-The React catalogue and source registry are on `concept/visual-component-library`. They have not
-been merged or deployed.
+The React catalogue and source registry are developed on `concept/visual-component-library`. The
+branch is deployed only as a Vercel preview until the work is explicitly approved for the default
+branch.
+
+## License and attribution
+
+Beautiful CSS is available under the [MIT License](./LICENSE). Originality and third-party handling
+are documented in [ATTRIBUTION.md](./ATTRIBUTION.md).

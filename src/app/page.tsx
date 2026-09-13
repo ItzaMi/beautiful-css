@@ -1,5 +1,6 @@
 import { LineReveal } from '@/components/beautiful';
 import { ComponentWorkbench } from '@/components/catalogue/component-workbench';
+import { BlockCollection } from '@/components/catalogue/block-collection';
 import { readComponentSources } from '@/data/sources';
 
 export default async function HomePage() {
@@ -31,6 +32,8 @@ export default async function HomePage() {
 			</section>
 
 			<ComponentWorkbench sources={sources} />
+
+			<BlockCollection />
 
 			<section className="boundary" id="principles">
 				<h2>Bring the primitives you trust.</h2>

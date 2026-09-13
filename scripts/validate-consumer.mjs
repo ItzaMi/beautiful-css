@@ -14,6 +14,8 @@ const componentIds = [
 	'media-shutter',
 	'edge-trace'
 ];
+const blockIds = ['editorial-project-hero', 'project-index'];
+const registryIds = [...componentIds, ...blockIds];
 
 const projectRoot = process.cwd();
 const workspace = await mkdtemp(path.join(tmpdir(), 'beautiful-css-consumer-'));
@@ -75,6 +77,7 @@ async function writeProject() {
 				},
 				iconLibrary: 'lucide',
 				aliases: {
+					blocks: '@/blocks',
 					components: '@/components',
 					ui: '@/components/ui',
 					lib: '@/lib',
@@ -116,6 +119,8 @@ import { LineReveal } from '@/components/beautiful/line-reveal/line-reveal';
 import { MediaShutter } from '@/components/beautiful/media-shutter/media-shutter';
 import { ProximityGrid } from '@/components/beautiful/proximity-grid/proximity-grid';
 import { SignalMarquee } from '@/components/beautiful/signal-marquee/signal-marquee';
+import { EditorialProjectHero } from '@/blocks/editorial-project-hero/editorial-project-hero';
+import { ProjectIndex } from '@/blocks/project-index/project-index';
 
 export default function Page() {
   return <main>
@@ -127,6 +132,8 @@ export default function Page() {
     <div className="demo"><ProximityGrid /></div>
     <div className="demo"><MediaShutter href="#media" src="/sample.svg" alt="Sample geometry" /></div>
     <EdgeTrace><a href="#edge">Edge target</a></EdgeTrace>
+    <EditorialProjectHero imageSrc="/sample.svg" imageAlt="Sample geometry" />
+    <ProjectIndex />
   </main>;
 }
 `,
@@ -172,11 +179,11 @@ try {
 	let addresses;
 
 	if (githubRef) {
-		addresses = componentIds.map((id) => `ItzaMi/beautiful-css/${id}#${githubRef}`);
+		addresses = registryIds.map((id) => `ItzaMi/beautiful-css/${id}#${githubRef}`);
 	} else {
 		await run(shadcn, ['build', 'registry.json', '--output', registryOutput]);
 		const registryUrl = await serveRegistry();
-		addresses = componentIds.map((id) => `${registryUrl}/${id}.json`);
+		addresses = registryIds.map((id) => `${registryUrl}/${id}.json`);
 	}
 
 	await run(shadcn, ['add', '--yes', '--overwrite', '--cwd', consumerRoot, ...addresses]);
@@ -187,6 +194,12 @@ try {
 		])
 	);
 	await access(path.join(consumerRoot, 'src', 'components', 'beautiful', 'types.ts'));
+	await Promise.all(
+		blockIds.flatMap((id) => [
+			access(path.join(consumerRoot, 'src', 'blocks', id, `${id}.tsx`)),
+			access(path.join(consumerRoot, 'src', 'blocks', id, `${id}.css`))
+		])
+	);
 
 	await run(
 		path.join(projectRoot, 'node_modules', '.bin', 'next'),
@@ -194,7 +207,7 @@ try {
 		consumerRoot
 	);
 	console.log(
-		`\nConsumer validation passed for ${componentIds.length} components (${githubRef ? `GitHub ref ${githubRef}` : 'local registry build'}).`
+		`\nConsumer validation passed for ${componentIds.length} components and ${blockIds.length} blocks (${githubRef ? `GitHub ref ${githubRef}` : 'local registry build'}).`
 	);
 } finally {
 	if (registryServer) await new Promise((resolve) => registryServer.close(resolve));

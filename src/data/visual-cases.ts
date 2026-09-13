@@ -10,7 +10,9 @@ export const componentVisualCases: VisualCase[] = componentCatalog.map((componen
 	id: component.id
 }));
 
-// Product blocks will register here and automatically enter the same viewport matrix.
-export const blockVisualCases: VisualCase[] = [];
+export const blockVisualCases: VisualCase[] = [
+	{ kind: 'block', id: 'editorial-project-hero' },
+	{ kind: 'block', id: 'project-index' }
+];
 
 export const visualCases = [...componentVisualCases, ...blockVisualCases];

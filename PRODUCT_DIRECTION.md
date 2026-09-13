@@ -146,5 +146,10 @@ The first collection establishes the intended range without rebuilding applicati
 - Media Shutter — directional media reveal
 - Edge Trace — a restrained animated perimeter for arbitrary content
 
-This collection is the next product milestone. Blocks, templates, agent integrations, and payment
-tiers come after the component quality and desirability are proven.
+The first component collection is now exercised through two composed block studies:
+
+- Editorial Project Hero — Line Reveal, Media Shutter, and Edge Trace
+- Project Index — Focus Beam and Character Shift
+
+These blocks validate composition and source distribution without changing the product boundary.
+Templates, agent integrations, and payment tiers remain later milestones.

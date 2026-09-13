@@ -186,6 +186,102 @@
 					"target": "@components/beautiful/types.ts"
 				}
 			]
+		},
+		{
+			"name": "editorial-project-hero",
+			"type": "registry:block",
+			"title": "Editorial Project Hero",
+			"description": "An image-led project hero composed from line reveal, media shutter, and edge trace.",
+			"files": [
+				{
+					"path": "src/blocks/editorial-project-hero/editorial-project-hero.tsx",
+					"type": "registry:block",
+					"target": "@blocks/editorial-project-hero/editorial-project-hero.tsx"
+				},
+				{
+					"path": "src/blocks/editorial-project-hero/editorial-project-hero.css",
+					"type": "registry:file",
+					"target": "@blocks/editorial-project-hero/editorial-project-hero.css"
+				},
+				{
+					"path": "src/components/beautiful/line-reveal/line-reveal.tsx",
+					"type": "registry:component",
+					"target": "@components/beautiful/line-reveal/line-reveal.tsx"
+				},
+				{
+					"path": "src/components/beautiful/line-reveal/line-reveal.css",
+					"type": "registry:file",
+					"target": "@components/beautiful/line-reveal/line-reveal.css"
+				},
+				{
+					"path": "src/components/beautiful/media-shutter/media-shutter.tsx",
+					"type": "registry:component",
+					"target": "@components/beautiful/media-shutter/media-shutter.tsx"
+				},
+				{
+					"path": "src/components/beautiful/media-shutter/media-shutter.css",
+					"type": "registry:file",
+					"target": "@components/beautiful/media-shutter/media-shutter.css"
+				},
+				{
+					"path": "src/components/beautiful/edge-trace/edge-trace.tsx",
+					"type": "registry:component",
+					"target": "@components/beautiful/edge-trace/edge-trace.tsx"
+				},
+				{
+					"path": "src/components/beautiful/edge-trace/edge-trace.css",
+					"type": "registry:file",
+					"target": "@components/beautiful/edge-trace/edge-trace.css"
+				},
+				{
+					"path": "src/components/beautiful/types.ts",
+					"type": "registry:file",
+					"target": "@components/beautiful/types.ts"
+				}
+			]
+		},
+		{
+			"name": "project-index",
+			"type": "registry:block",
+			"title": "Project Index",
+			"description": "A responsive studio index composed from focus beam and character shift.",
+			"files": [
+				{
+					"path": "src/blocks/project-index/project-index.tsx",
+					"type": "registry:block",
+					"target": "@blocks/project-index/project-index.tsx"
+				},
+				{
+					"path": "src/blocks/project-index/project-index.css",
+					"type": "registry:file",
+					"target": "@blocks/project-index/project-index.css"
+				},
+				{
+					"path": "src/components/beautiful/focus-beam/focus-beam.tsx",
+					"type": "registry:component",
+					"target": "@components/beautiful/focus-beam/focus-beam.tsx"
+				},
+				{
+					"path": "src/components/beautiful/focus-beam/focus-beam.css",
+					"type": "registry:file",
+					"target": "@components/beautiful/focus-beam/focus-beam.css"
+				},
+				{
+					"path": "src/components/beautiful/character-shift/character-shift.tsx",
+					"type": "registry:component",
+					"target": "@components/beautiful/character-shift/character-shift.tsx"
+				},
+				{
+					"path": "src/components/beautiful/character-shift/character-shift.css",
+					"type": "registry:file",
+					"target": "@components/beautiful/character-shift/character-shift.css"
+				},
+				{
+					"path": "src/components/beautiful/types.ts",
+					"type": "registry:file",
+					"target": "@components/beautiful/types.ts"
+				}
+			]
 		}
 	]
 }

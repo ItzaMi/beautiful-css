@@ -26,8 +26,20 @@ test('selected components expose direct install and sharing actions', async ({ p
 	);
 	await expect(page.getByRole('button', { name: 'Copy command' })).toBeVisible();
 	await expect(page.getByRole('button', { name: 'Copy link' })).toBeVisible();
-	await expect(page.getByRole('link', { name: 'Open preview' })).toHaveAttribute(
-		'href',
-		'/preview/component/focus-beam'
+	await expect(
+		page.locator('.workbench').getByRole('link', { name: 'Open preview' })
+	).toHaveAttribute('href', '/preview/component/focus-beam');
+});
+
+test('composed blocks expose install commands and isolated previews', async ({ page }) => {
+	await page.goto('/#blocks');
+	await expect(page.getByRole('heading', { name: 'Editorial Project Hero' })).toBeVisible();
+	await expect(page.getByRole('heading', { name: 'Project Index', exact: true })).toBeVisible();
+	await expect(page.getByLabel('Editorial Project Hero install command')).toContainText(
+		'ItzaMi/beautiful-css/editorial-project-hero#concept/visual-component-library'
 	);
+	await expect(page.getByLabel('Project Index install command')).toContainText(
+		'ItzaMi/beautiful-css/project-index#concept/visual-component-library'
+	);
+	await expect(page.locator('a[href="/preview/block/project-index"]')).toBeVisible();
 });

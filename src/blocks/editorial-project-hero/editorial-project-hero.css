@@ -1,0 +1,139 @@
+.bc-editorial-hero {
+	display: grid;
+	grid-template-columns: minmax(20rem, 0.78fr) minmax(28rem, 1.22fr);
+	min-height: min(52rem, 100svh);
+	color: #111310;
+	background: #edeee9;
+}
+
+.bc-editorial-hero__copy {
+	display: grid;
+	grid-template-rows: auto 1fr auto auto;
+	gap: 2rem;
+	padding: clamp(1.25rem, 3.2vw, 3rem);
+}
+
+.bc-editorial-hero__eyebrow,
+.bc-editorial-hero__summary p,
+.bc-editorial-hero__summary dl,
+.bc-editorial-hero__copy h1 {
+	margin: 0;
+}
+
+.bc-editorial-hero__eyebrow {
+	font-size: 0.65rem;
+	font-weight: 620;
+	letter-spacing: 0.045em;
+	text-transform: uppercase;
+}
+
+.bc-editorial-hero__copy h1 {
+	align-self: center;
+	max-width: 10ch;
+	font-size: clamp(3.2rem, 6.1vw, 7.3rem);
+	font-weight: 520;
+	line-height: 0.9;
+	letter-spacing: -0.075em;
+}
+
+.bc-editorial-hero__summary {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(10rem, 0.72fr);
+	gap: 2rem;
+	padding-top: 1rem;
+	border-top: 1px solid #c9ccc5;
+}
+
+.bc-editorial-hero__summary > p {
+	max-width: 31rem;
+	color: #555a52;
+	font-size: clamp(0.72rem, 1vw, 0.84rem);
+	line-height: 1.65;
+}
+
+.bc-editorial-hero__summary dl {
+	display: grid;
+	gap: 0.6rem;
+}
+
+.bc-editorial-hero__summary dl > div {
+	display: grid;
+	grid-template-columns: 3rem 1fr;
+	gap: 0.8rem;
+}
+
+.bc-editorial-hero__summary dt,
+.bc-editorial-hero__summary dd {
+	margin: 0;
+	font-size: 0.62rem;
+}
+
+.bc-editorial-hero__summary dt {
+	color: #898d85;
+}
+
+.bc-editorial-hero__action {
+	--trace-background: #edeee9;
+	width: 100%;
+}
+
+.bc-editorial-hero__action a {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.95rem 0.25rem;
+	font-size: 0.68rem;
+	font-weight: 580;
+	text-decoration: none;
+}
+
+.bc-editorial-hero__media {
+	position: relative;
+	min-width: 0;
+	min-height: 40rem;
+	overflow: hidden;
+}
+
+.bc-editorial-hero__figure {
+	position: absolute;
+	right: 1rem;
+	bottom: 1rem;
+	padding: 0.42rem 0.55rem;
+	color: #f7f7f5;
+	background: color-mix(in srgb, #111310 68%, transparent);
+	font-size: 0.58rem;
+	font-variant-numeric: tabular-nums;
+	backdrop-filter: blur(8px);
+}
+
+@media (max-width: 820px) {
+	.bc-editorial-hero {
+		grid-template-columns: 1fr;
+		min-height: auto;
+	}
+
+	.bc-editorial-hero__copy {
+		grid-template-rows: auto auto auto auto;
+		gap: 2.4rem;
+		padding: 1.25rem;
+	}
+
+	.bc-editorial-hero__copy h1 {
+		max-width: 9ch;
+		margin: 2.5rem 0 1rem;
+		font-size: clamp(3.25rem, 16vw, 5.5rem);
+	}
+
+	.bc-editorial-hero__summary {
+		grid-template-columns: 1fr;
+		gap: 1.25rem;
+	}
+
+	.bc-editorial-hero__summary dl {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.bc-editorial-hero__media {
+		min-height: 68svh;
+	}
+}

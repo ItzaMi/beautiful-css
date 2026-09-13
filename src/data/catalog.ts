@@ -1,11 +1,15 @@
 export type ComponentId =
 	| 'line-reveal'
+	| 'word-cascade'
 	| 'character-shift'
+	| 'counter-roll'
+	| 'crop-shift'
 	| 'signal-marquee'
 	| 'cursor-field'
 	| 'focus-beam'
 	| 'proximity-grid'
 	| 'media-shutter'
+	| 'section-signal'
 	| 'edge-trace';
 
 export type ControlValue = string | number | boolean;
@@ -31,7 +35,7 @@ export type ComponentProperty = {
 export type ComponentSpec = {
 	id: ComponentId;
 	name: string;
-	category: 'Text' | 'Background' | 'Pointer' | 'Media' | 'Surface';
+	category: 'Text' | 'Background' | 'Pointer' | 'Media' | 'Surface' | 'State' | 'Layout';
 	access: 'Free' | 'Pro';
 	description: string;
 	principle: string;
@@ -103,6 +107,63 @@ export const componentCatalog: ComponentSpec[] = [
 		}
 	},
 	{
+		id: 'word-cascade',
+		name: 'Word Cascade',
+		category: 'Text',
+		access: 'Free',
+		description: 'Words enter independently while line wrapping remains native to the container.',
+		principle: 'The browser keeps ownership of text flow, reading order, and wrapping.',
+		usage: `<WordCascade
+  text="Independent tools for expressive interfaces."
+  delay={55}
+  duration={560}
+/>`,
+		defaultValues: { delay: 55, duration: 560 },
+		controls: [
+			{ key: 'replay', label: 'Replay', type: 'action' },
+			{ key: 'delay', label: 'Word delay', type: 'range', min: 0, max: 140, step: 5, unit: 'ms' },
+			{
+				key: 'duration',
+				label: 'Duration',
+				type: 'range',
+				min: 200,
+				max: 1000,
+				step: 20,
+				unit: 'ms'
+			}
+		],
+		properties: [
+			{
+				name: 'text',
+				type: 'string',
+				defaultValue: "'Words arrive …'",
+				notes: 'The complete semantic phrase; words wrap naturally.'
+			},
+			{
+				name: 'delay',
+				type: 'number',
+				defaultValue: '55',
+				notes: 'Delay between words in milliseconds.'
+			},
+			{
+				name: 'duration',
+				type: 'number',
+				defaultValue: '560',
+				notes: 'Entrance duration in milliseconds.'
+			},
+			{
+				name: 'replayKey',
+				type: 'string | number',
+				defaultValue: '0',
+				notes: 'Change to replay the entrance.'
+			}
+		],
+		sourceFiles: {
+			component: `${sourceRoot}/word-cascade/word-cascade.tsx`,
+			styles: `${sourceRoot}/word-cascade/word-cascade.css`
+		}
+	},
+	{
 		id: 'character-shift',
 		name: 'Character Shift',
 		category: 'Text',
@@ -165,6 +226,77 @@ export const componentCatalog: ComponentSpec[] = [
 		sourceFiles: {
 			component: `${sourceRoot}/character-shift/character-shift.tsx`,
 			styles: `${sourceRoot}/character-shift/character-shift.css`
+		}
+	},
+	{
+		id: 'counter-roll',
+		name: 'Counter Roll',
+		category: 'State',
+		access: 'Free',
+		description: 'A value transition with stable tabular columns and one announced result.',
+		principle:
+			'Visual history stays hidden from assistive technology while long values adapt to their container.',
+		usage: `<CounterRoll
+  value={1842}
+  previousValue={0}
+  minimumIntegerDigits={4}
+  duration={620}
+/>`,
+		defaultValues: { value: 1842, duration: 620 },
+		controls: [
+			{ key: 'value', label: 'Value', type: 'range', min: 0, max: 5000, step: 137 },
+			{
+				key: 'duration',
+				label: 'Duration',
+				type: 'range',
+				min: 180,
+				max: 1200,
+				step: 20,
+				unit: 'ms'
+			}
+		],
+		properties: [
+			{ name: 'value', type: 'number', defaultValue: '0', notes: 'Current numeric value.' },
+			{
+				name: 'previousValue',
+				type: 'number',
+				defaultValue: 'value',
+				notes: 'Optional first value used for the initial roll.'
+			},
+			{
+				name: 'locale',
+				type: 'string',
+				defaultValue: "'en'",
+				notes: 'Locale passed to Intl.NumberFormat.'
+			},
+			{
+				name: 'minimumIntegerDigits',
+				type: 'number',
+				defaultValue: '1',
+				notes: 'Clamped from 1 to 12.'
+			},
+			{
+				name: 'fractionDigits',
+				type: 'number',
+				defaultValue: '0',
+				notes: 'Fixed fraction digits, clamped from 0 to 6.'
+			},
+			{
+				name: 'prefix / suffix',
+				type: 'string',
+				defaultValue: "''",
+				notes: 'Visible text included in the announced value.'
+			},
+			{
+				name: 'duration',
+				type: 'number',
+				defaultValue: '620',
+				notes: 'Roll duration in milliseconds.'
+			}
+		],
+		sourceFiles: {
+			component: `${sourceRoot}/counter-roll/counter-roll.tsx`,
+			styles: `${sourceRoot}/counter-roll/counter-roll.css`
 		}
 	},
 	{
@@ -328,6 +460,75 @@ export const componentCatalog: ComponentSpec[] = [
 		}
 	},
 	{
+		id: 'crop-shift',
+		name: 'Crop Shift',
+		category: 'Media',
+		access: 'Free',
+		description:
+			'A responsive image crop that follows intent without moving the surrounding layout.',
+		principle:
+			'Pointer movement refines the crop; keyboard and touch retain a deliberate focal point.',
+		usage: `<CropShift
+  src="/project.jpg"
+  alt="Gallery interior with a blue installation"
+  href="/projects/gallery"
+  focalX={58}
+  focalY={46}
+/>`,
+		defaultValues: { focalX: 58, focalY: 46, range: 14, duration: 680 },
+		controls: [
+			{ key: 'focalX', label: 'Focal X', type: 'range', min: 0, max: 100, step: 1, unit: '%' },
+			{ key: 'focalY', label: 'Focal Y', type: 'range', min: 0, max: 100, step: 1, unit: '%' },
+			{ key: 'range', label: 'Travel', type: 'range', min: 0, max: 30, step: 1, unit: '%' },
+			{
+				key: 'duration',
+				label: 'Response',
+				type: 'range',
+				min: 180,
+				max: 1200,
+				step: 20,
+				unit: 'ms'
+			}
+		],
+		properties: [
+			{ name: 'src', type: 'string', defaultValue: 'required', notes: 'Native image source.' },
+			{
+				name: 'alt',
+				type: 'string',
+				defaultValue: 'required',
+				notes: 'Semantic image description.'
+			},
+			{
+				name: 'focalX / focalY',
+				type: 'number',
+				defaultValue: '50',
+				notes: 'Stable focal point, clamped from 0 to 100.'
+			},
+			{
+				name: 'range',
+				type: 'number',
+				defaultValue: '14',
+				notes: 'Maximum pointer travel, clamped from 0 to 50.'
+			},
+			{
+				name: 'duration',
+				type: 'number',
+				defaultValue: '680',
+				notes: 'Crop response duration in milliseconds.'
+			},
+			{
+				name: '…anchor props',
+				type: 'AnchorHTMLAttributes',
+				defaultValue: '—',
+				notes: 'The media keeps native link behavior.'
+			}
+		],
+		sourceFiles: {
+			component: `${sourceRoot}/crop-shift/crop-shift.tsx`,
+			styles: `${sourceRoot}/crop-shift/crop-shift.css`
+		}
+	},
+	{
 		id: 'media-shutter',
 		name: 'Media Shutter',
 		category: 'Media',
@@ -380,6 +581,54 @@ export const componentCatalog: ComponentSpec[] = [
 		sourceFiles: {
 			component: `${sourceRoot}/media-shutter/media-shutter.tsx`,
 			styles: `${sourceRoot}/media-shutter/media-shutter.css`
+		}
+	},
+	{
+		id: 'section-signal',
+		name: 'Section Signal',
+		category: 'Layout',
+		access: 'Free',
+		description: 'A section wrapper that turns reading progress into a quiet structural rail.',
+		principle: 'Content remains ordinary HTML; progress is exposed as a composable CSS property.',
+		usage: `<SectionSignal rail="start">
+  <article>Your section content</article>
+</SectionSignal>`,
+		defaultValues: { progress: 0.58, rail: 'start' },
+		controls: [
+			{ key: 'progress', label: 'Progress', type: 'range', min: 0, max: 1, step: 0.05 },
+			{
+				key: 'rail',
+				label: 'Rail position',
+				type: 'select',
+				options: [
+					{ label: 'Start', value: 'start' },
+					{ label: 'End', value: 'end' }
+				]
+			}
+		],
+		properties: [
+			{
+				name: 'progress',
+				type: 'number | undefined',
+				defaultValue: 'undefined',
+				notes: 'Controlled progress from 0 to 1; omit to derive it from scroll position.'
+			},
+			{
+				name: 'rail',
+				type: "'start' | 'end'",
+				defaultValue: "'start'",
+				notes: 'Places the progress rail before or after the content.'
+			},
+			{
+				name: 'children',
+				type: 'ReactNode',
+				defaultValue: 'required',
+				notes: 'Consumer-owned section content.'
+			}
+		],
+		sourceFiles: {
+			component: `${sourceRoot}/section-signal/section-signal.tsx`,
+			styles: `${sourceRoot}/section-signal/section-signal.css`
 		}
 	},
 	{

@@ -11,7 +11,15 @@ const motionCases: Array<{
 	target?: string;
 }> = [
 	{ id: 'line-reveal', trigger: 'load', checkpoints: [120, 280, 620] },
+	{ id: 'word-cascade', trigger: 'load', checkpoints: [120, 340, 820] },
 	{ id: 'character-shift', trigger: 'hover', target: 'a', checkpoints: [80, 180, 380] },
+	{ id: 'counter-roll', trigger: 'load', checkpoints: [120, 360, 820] },
+	{
+		id: 'crop-shift',
+		trigger: 'pointer',
+		target: '.bc-crop-shift',
+		checkpoints: [80, 260, 760]
+	},
 	{ id: 'signal-marquee', trigger: 'load', checkpoints: [600, 1400] },
 	{
 		id: 'cursor-field',
@@ -26,7 +34,7 @@ const motionCases: Array<{
 		target: '.bc-proximity-grid',
 		checkpoints: [60, 180, 420]
 	},
-	{ id: 'media-shutter', trigger: 'focus', target: 'a', checkpoints: [100, 280, 620] },
+	{ id: 'media-shutter', trigger: 'focus', target: 'a', checkpoints: [120, 340, 820] },
 	{ id: 'edge-trace', trigger: 'focus', target: 'a', checkpoints: [100, 360, 900] }
 ];
 
@@ -52,7 +60,17 @@ for (const motionCase of motionCases) {
 		if (motionCase.trigger === 'hover') await target.hover();
 		if (motionCase.trigger === 'focus') await target.focus();
 		if (motionCase.trigger === 'pointer') {
-			await target.hover({ position: { x: 760, y: 270 } });
+			if (motionCase.id === 'crop-shift') {
+				const bounds = await target.boundingBox();
+				await target.hover({
+					position: {
+						x: Math.max(1, (bounds?.width ?? 1) * 0.78),
+						y: Math.max(1, (bounds?.height ?? 1) * 0.46)
+					}
+				});
+			} else {
+				await target.hover({ position: { x: 760, y: 270 } });
+			}
 		}
 
 		let elapsed = 0;

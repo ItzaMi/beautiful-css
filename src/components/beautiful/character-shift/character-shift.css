@@ -11,6 +11,8 @@
 .bc-character-shift__phrase {
 	display: block;
 	grid-area: 1 / 1;
+	padding: 0.14em 0.04em 0.18em;
+	margin: -0.14em -0.04em -0.18em;
 	overflow-wrap: break-word;
 	transition:
 		clip-path var(--character-duration) cubic-bezier(0.22, 1, 0.36, 1),

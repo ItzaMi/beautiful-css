@@ -143,12 +143,16 @@ from the same files the registry distributes. The source and the interaction are
 The first collection establishes the intended range without rebuilding application primitives:
 
 - Line Reveal — masked, staggered text entrance
+- Word Cascade — word-level entrance with natural browser wrapping
 - Character Shift — hover and focus letter transition
+- Counter Roll — animated numeric changes with stable layout and one announced result
+- Crop Shift — focal image movement with stable touch and keyboard states
 - Signal Marquee — continuous contextual text rail
 - Cursor Field — pointer-responsive geometric field
 - Focus Beam — a light treatment that follows focus or pointer position
 - Proximity Grid — cells respond to the visitor's position
 - Media Shutter — directional media reveal
+- Section Signal — scroll or controlled progress exposed as a structural rail
 - Edge Trace — a restrained animated perimeter for arbitrary content
 
 The first component collection is now exercised through two composed block studies:

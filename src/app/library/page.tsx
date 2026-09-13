@@ -1,6 +1,7 @@
 import { BlockCollection } from '@/components/catalogue/block-collection';
 import { ComponentWorkbench } from '@/components/catalogue/component-workbench';
 import { readComponentSources } from '@/data/sources';
+import { componentCatalog } from '@/data/catalog';
 
 export default async function LibraryPage() {
 	const sources = await readComponentSources();
@@ -12,7 +13,7 @@ export default async function LibraryPage() {
 				<h1>Try the effect. Take the source.</h1>
 				<div>
 					<p>Every example below runs from the same editable React and CSS files you receive.</p>
-					<span>Eight components · Two blocks</span>
+					<span>{componentCatalog.length} components · Two blocks</span>
 				</div>
 			</header>
 

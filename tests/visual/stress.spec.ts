@@ -2,11 +2,18 @@ import { expect, test } from '@playwright/test';
 
 const stressCases = [
 	{ id: 'line-reveal', scenario: 'long-content', project: 'mobile' },
+	{ id: 'line-reveal', scenario: 'type-metrics', project: 'desktop' },
+	{ id: 'word-cascade', scenario: 'long-content', project: 'mobile' },
+	{ id: 'word-cascade', scenario: 'type-metrics', project: 'desktop' },
 	{ id: 'character-shift', scenario: 'long-content', project: 'mobile' },
+	{ id: 'character-shift', scenario: 'type-metrics', project: 'desktop' },
+	{ id: 'counter-roll', scenario: 'large-number', project: 'mobile' },
+	{ id: 'crop-shift', scenario: 'wide-travel', project: 'desktop' },
 	{ id: 'cursor-field', scenario: 'dense', project: 'desktop' },
 	{ id: 'focus-beam', scenario: 'tight', project: 'desktop' },
 	{ id: 'proximity-grid', scenario: 'dense', project: 'desktop' },
 	{ id: 'media-shutter', scenario: 'horizontal', project: 'desktop' },
+	{ id: 'section-signal', scenario: 'complete', project: 'mobile' },
 	{ id: 'edge-trace', scenario: 'active', project: 'reduced-motion' }
 ] as const;
 
@@ -20,9 +27,13 @@ for (const stressCase of stressCases) {
 		const preview = page.locator('[data-component-root]');
 		await expect(preview).toBeVisible();
 
-		if (stressCase.scenario === 'long-content') {
+		if (stressCase.scenario === 'long-content' || stressCase.scenario === 'type-metrics') {
 			const treatment = preview.locator(
-				stressCase.id === 'line-reveal' ? '.bc-line-reveal' : '.bc-character-shift'
+				stressCase.id === 'line-reveal'
+					? '.bc-line-reveal'
+					: stressCase.id === 'word-cascade'
+						? '.bc-word-cascade'
+						: '.bc-character-shift'
 			);
 			const fits = await treatment.evaluate((element) => {
 				const container = element.closest('[data-component-root]');
@@ -40,7 +51,11 @@ for (const stressCase of stressCases) {
 
 		await expect(preview).toHaveScreenshot(`${stressCase.id}-${stressCase.scenario}.png`);
 
-		if (stressCase.id === 'character-shift' || stressCase.id === 'media-shutter') {
+		if (
+			stressCase.id === 'character-shift' ||
+			stressCase.id === 'media-shutter' ||
+			stressCase.id === 'crop-shift'
+		) {
 			await preview.locator('a').first().focus();
 			await expect(preview).toHaveScreenshot(
 				`${stressCase.id}-${stressCase.scenario}-interaction.png`

@@ -1,0 +1,50 @@
+.bc-section-signal {
+	display: grid;
+	grid-template-columns: 2px minmax(0, 1fr);
+	gap: clamp(1rem, 3vw, 2.5rem);
+	width: 100%;
+}
+
+.bc-section-signal.is-end {
+	grid-template-columns: minmax(0, 1fr) 2px;
+}
+
+.bc-section-signal__rail {
+	position: relative;
+	display: block;
+	grid-column: 1;
+	grid-row: 1;
+	overflow: hidden;
+	background: color-mix(in srgb, currentColor 16%, transparent);
+}
+
+.bc-section-signal.is-end .bc-section-signal__rail {
+	grid-column: 2;
+}
+
+.bc-section-signal__rail i {
+	position: absolute;
+	inset: 0;
+	display: block;
+	background: currentColor;
+	transform: scaleY(var(--section-progress));
+	transform-origin: top;
+	transition: transform 120ms linear;
+}
+
+.bc-section-signal__content {
+	grid-column: 2;
+	grid-row: 1;
+	min-width: 0;
+}
+
+.bc-section-signal.is-end .bc-section-signal__content {
+	grid-column: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bc-section-signal__rail i {
+		transform: scaleY(1);
+		transition: none;
+	}
+}

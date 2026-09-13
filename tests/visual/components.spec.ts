@@ -32,6 +32,15 @@ for (const visualCase of visualCases) {
 				visualCase.id === 'cursor-field' ? '.bc-cursor-field' : '.bc-proximity-grid'
 			);
 			await pointerSurface.hover({ position: { x: 760, y: 270 } });
+		} else if (visualCase.id === 'crop-shift') {
+			const pointerSurface = component.locator('.bc-crop-shift');
+			const bounds = await pointerSurface.boundingBox();
+			await pointerSurface.hover({
+				position: {
+					x: Math.max(1, (bounds?.width ?? 1) * 0.78),
+					y: Math.max(1, (bounds?.height ?? 1) * 0.46)
+				}
+			});
 		} else if (visualCase.id === 'character-shift' || visualCase.id === 'media-shutter') {
 			await component.locator('a').first().focus();
 		} else if (visualCase.id === 'focus-beam' || visualCase.id === 'edge-trace') {
@@ -47,6 +56,10 @@ for (const visualCase of visualCases) {
 				visualCase.id === 'cursor-field' ? '.bc-cursor-field' : '.bc-proximity-grid'
 			);
 			await pointerSurface.dispatchEvent('pointerleave', { pointerType: 'mouse' });
+		} else if (visualCase.id === 'crop-shift') {
+			await component
+				.locator('.bc-crop-shift')
+				.dispatchEvent('pointerleave', { pointerType: 'mouse' });
 		} else {
 			await page.evaluate(() => {
 				if (document.activeElement instanceof HTMLElement) document.activeElement.blur();

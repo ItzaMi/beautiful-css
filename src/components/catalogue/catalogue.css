@@ -336,6 +336,32 @@
 	font-weight: 550;
 }
 
+.word-cascade-demo {
+	display: grid;
+	box-sizing: border-box;
+	align-content: center;
+	gap: clamp(2rem, 7vw, 6rem);
+	width: 100%;
+	height: 100%;
+	padding: clamp(2rem, 6vw, 5rem);
+}
+
+.word-cascade-demo > div {
+	max-width: 11ch;
+	font-size: clamp(3.2rem, 7vw, 7.4rem);
+	font-weight: 540;
+	line-height: 0.92;
+	letter-spacing: -0.068em;
+}
+
+.word-cascade-demo p {
+	padding-top: 0.8rem;
+	margin: 0;
+	border-top: 1px solid #c9ccc5;
+	color: #777c73;
+	font-size: 0.62rem;
+}
+
 .character-demo {
 	display: grid;
 	gap: 2rem;
@@ -356,6 +382,47 @@
 	font-size: 0.62rem;
 	font-weight: 400;
 	letter-spacing: 0;
+}
+
+.counter-roll-demo {
+	display: grid;
+	box-sizing: border-box;
+	align-content: space-between;
+	width: 100%;
+	height: 100%;
+	padding: clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.counter-roll-demo header {
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid color-mix(in srgb, currentColor 32%, transparent);
+	font-size: 0.62rem;
+}
+
+.counter-roll-demo > div {
+	display: grid;
+	justify-items: end;
+	align-self: center;
+	container-type: inline-size;
+}
+
+.counter-roll-demo .bc-counter-roll {
+	font-size: clamp(5rem, 14vw, 13rem);
+	font-weight: 560;
+	letter-spacing: -0.075em;
+}
+
+.counter-roll-demo > div > span:last-child,
+.counter-roll-demo > p {
+	margin: 0;
+	font-size: 0.68rem;
+}
+
+.counter-roll-demo > p {
+	padding-top: 1rem;
+	border-top: 1px solid color-mix(in srgb, currentColor 32%, transparent);
 }
 
 .marquee-demo {
@@ -461,6 +528,42 @@
 .media-demo {
 	width: min(680px, calc(100% - 48px));
 	aspect-ratio: 4 / 3;
+}
+
+.crop-shift-demo {
+	width: min(760px, calc(100% - 48px));
+	aspect-ratio: 16 / 10;
+}
+
+.section-signal-demo {
+	width: min(820px, calc(100% - 48px));
+}
+
+.section-signal-demo .bc-section-signal__content {
+	display: grid;
+	gap: clamp(1.25rem, 4vw, 3rem);
+	padding: 0.5rem 0;
+}
+
+.section-signal-demo span,
+.section-signal-demo p {
+	margin: 0;
+	color: #969b92;
+	font-size: 0.66rem;
+	line-height: 1.55;
+}
+
+.section-signal-demo h2 {
+	max-width: 11ch;
+	margin: 0;
+	font-size: clamp(2.7rem, 6.5vw, 6.6rem);
+	font-weight: 530;
+	line-height: 0.94;
+	letter-spacing: -0.065em;
+}
+
+.section-signal-demo p {
+	max-width: 42rem;
 }
 
 .trace-demo {
@@ -757,12 +860,38 @@
 	}
 
 	.line-reveal-demo,
-	.character-demo {
+	.character-demo,
+	.word-cascade-demo {
 		padding: 1rem;
 	}
 
 	.line-reveal-demo {
 		font-size: clamp(1.65rem, 7.7vw, 2.2rem);
+	}
+
+	.word-cascade-demo > div {
+		font-size: clamp(2.35rem, 11.5vw, 3.35rem);
+	}
+
+	.counter-roll-demo {
+		padding: 1rem;
+	}
+
+	.counter-roll-demo .bc-counter-roll {
+		font-size: clamp(4.4rem, 22vw, 6.4rem);
+	}
+
+	.crop-shift-demo,
+	.section-signal-demo {
+		width: calc(100% - 32px);
+	}
+
+	.crop-shift-demo {
+		aspect-ratio: 4 / 5;
+	}
+
+	.section-signal-demo h2 {
+		font-size: clamp(2.55rem, 12vw, 3.7rem);
 	}
 
 	.beam-demo .bc-focus-beam {

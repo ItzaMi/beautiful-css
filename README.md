@@ -9,12 +9,16 @@ Aria underneath.
 The current local collection includes:
 
 - Line Reveal
+- Word Cascade
 - Character Shift
+- Counter Roll
+- Crop Shift
 - Signal Marquee
 - Cursor Field
 - Focus Beam
 - Proximity Grid
 - Media Shutter
+- Section Signal
 - Edge Trace
 
 The first composed blocks are:
@@ -23,7 +27,8 @@ The first composed blocks are:
 - Project Index
 
 Read [PRODUCT_DIRECTION.md](./PRODUCT_DIRECTION.md) for the product boundary, free/Pro model, and
-component quality bar.
+component quality bar. [COLLECTION_ROADMAP.md](./COLLECTION_ROADMAP.md) defines the path from the
+current effect set to a credible component library.
 
 React is the first supported implementation. Each item keeps its visual behaviour in colocated CSS
 so that future framework adapters can share the effect without pretending untested compatibility.
@@ -59,7 +64,7 @@ npx shadcn@latest add ItzaMi/beautiful-css/line-reveal#concept/visual-component-
 The branch suffix can be removed after the registry reaches the default branch. Complete source
 remains copyable from the catalogue without the CLI.
 
-`yarn registry:consumer` builds the current registry, installs all eight components and both blocks
+`yarn registry:consumer` builds the current registry, installs all twelve components and both blocks
 with the real shadcn CLI into a disposable Next app, verifies every delivered file, and compiles
 that consumer. A GitHub ref can be checked with
 `yarn registry:consumer --github-ref <branch-or-commit>`.

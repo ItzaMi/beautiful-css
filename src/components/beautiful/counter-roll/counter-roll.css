@@ -1,0 +1,70 @@
+.bc-counter-roll {
+	display: inline-grid;
+	max-width: 100%;
+	font-variant-numeric: tabular-nums lining-nums;
+	line-height: 0.92;
+}
+
+.bc-counter-roll__visual {
+	display: inline-flex;
+	grid-area: 1 / 1;
+	justify-self: end;
+	font-size: min(1em, var(--counter-fit-size));
+}
+
+.bc-counter-roll__character {
+	display: inline-grid;
+	padding: 0.12em 0.015em 0.16em;
+	margin: -0.12em -0.015em -0.16em;
+	overflow: hidden;
+}
+
+.bc-counter-roll__character > span {
+	display: block;
+	grid-area: 1 / 1;
+}
+
+.bc-counter-roll__character.is-rolling .is-previous {
+	animation: bc-counter-roll-out var(--counter-duration) cubic-bezier(0.76, 0, 0.24, 1) both;
+	animation-delay: calc(var(--counter-index) * 18ms);
+}
+
+.bc-counter-roll__character.is-rolling .is-current {
+	animation: bc-counter-roll-in var(--counter-duration) cubic-bezier(0.76, 0, 0.24, 1) both;
+	animation-delay: calc(var(--counter-index) * 18ms);
+}
+
+.bc-counter-roll__accessible {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+@keyframes bc-counter-roll-out {
+	to {
+		opacity: 0;
+		transform: translateY(-112%);
+	}
+}
+
+@keyframes bc-counter-roll-in {
+	from {
+		opacity: 0;
+		transform: translateY(112%);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bc-counter-roll__character .is-previous {
+		display: none;
+	}
+
+	.bc-counter-roll__character.is-rolling .is-current {
+		animation: none;
+	}
+}

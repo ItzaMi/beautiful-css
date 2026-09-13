@@ -6,12 +6,16 @@ import path from 'node:path';
 
 const componentIds = [
 	'line-reveal',
+	'word-cascade',
 	'character-shift',
+	'counter-roll',
+	'crop-shift',
 	'signal-marquee',
 	'cursor-field',
 	'focus-beam',
 	'proximity-grid',
 	'media-shutter',
+	'section-signal',
 	'edge-trace'
 ];
 const blockIds = ['editorial-project-hero', 'project-index'];
@@ -112,25 +116,33 @@ async function writeProject() {
 		'src/app/globals.css': `* { box-sizing: border-box; }\nbody { margin: 0; font-family: sans-serif; }\n.demo { position: relative; min-height: 16rem; }\n`,
 		'src/app/layout.tsx': `import type { ReactNode } from 'react';\nimport './globals.css';\n\nexport default function Layout({ children }: { children: ReactNode }) {\n  return <html lang="en"><body>{children}</body></html>;\n}\n`,
 		'src/app/page.tsx': `import { CharacterShift } from '@/components/beautiful/character-shift/character-shift';
+import { CounterRoll } from '@/components/beautiful/counter-roll/counter-roll';
+import { CropShift } from '@/components/beautiful/crop-shift/crop-shift';
 import { CursorField } from '@/components/beautiful/cursor-field/cursor-field';
 import { EdgeTrace } from '@/components/beautiful/edge-trace/edge-trace';
 import { FocusBeam } from '@/components/beautiful/focus-beam/focus-beam';
 import { LineReveal } from '@/components/beautiful/line-reveal/line-reveal';
 import { MediaShutter } from '@/components/beautiful/media-shutter/media-shutter';
 import { ProximityGrid } from '@/components/beautiful/proximity-grid/proximity-grid';
+import { SectionSignal } from '@/components/beautiful/section-signal/section-signal';
 import { SignalMarquee } from '@/components/beautiful/signal-marquee/signal-marquee';
+import { WordCascade } from '@/components/beautiful/word-cascade/word-cascade';
 import { EditorialProjectHero } from '@/blocks/editorial-project-hero/editorial-project-hero';
 import { ProjectIndex } from '@/blocks/project-index/project-index';
 
 export default function Page() {
   return <main>
     <LineReveal lines={['Installed source', 'Compiled cleanly']} />
+    <WordCascade text="Installed words wrap naturally" />
     <CharacterShift href="#journal" text="Read journal" alternate="Open journal" />
+    <CounterRoll value={1842} previousValue={0} />
+    <div className="demo"><CropShift href="#crop" src="/sample.svg" alt="Sample geometry" /></div>
     <SignalMarquee items={['Editable', 'Portable', 'Tested']} />
     <div className="demo"><CursorField /></div>
     <FocusBeam><a href="#focus">Focus target</a></FocusBeam>
     <div className="demo"><ProximityGrid /></div>
     <div className="demo"><MediaShutter href="#media" src="/sample.svg" alt="Sample geometry" /></div>
+    <SectionSignal progress={0.5}><p>Section content</p></SectionSignal>
     <EdgeTrace><a href="#edge">Edge target</a></EdgeTrace>
     <EditorialProjectHero imageSrc="/sample.svg" imageAlt="Sample geometry" />
     <ProjectIndex />

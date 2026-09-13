@@ -1,0 +1,56 @@
+.bc-crop-shift {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	color: inherit;
+	background: #111310;
+	text-decoration: none;
+}
+
+.bc-crop-shift img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: var(--crop-x) var(--crop-y);
+	filter: saturate(0.72) contrast(1.04);
+	transform: scale(1.09);
+	transition:
+		object-position var(--crop-duration) cubic-bezier(0.22, 1, 0.36, 1),
+		filter var(--crop-duration) ease,
+		transform var(--crop-duration) cubic-bezier(0.22, 1, 0.36, 1);
+	will-change: object-position, transform;
+}
+
+.bc-crop-shift:hover img,
+.bc-crop-shift:focus-visible img {
+	filter: saturate(1) contrast(1);
+	transform: scale(1.025);
+}
+
+.bc-crop-shift:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 3px;
+}
+
+.bc-crop-shift__label {
+	position: absolute;
+	right: 1rem;
+	bottom: 1rem;
+	padding: 0.35rem 0;
+	color: #f7f7f5;
+	border-bottom: 1px solid currentColor;
+	font-size: 0.68rem;
+	letter-spacing: 0.01em;
+}
+
+@media (prefers-reduced-motion: reduce), (hover: none) {
+	.bc-crop-shift img {
+		object-position: var(--crop-rest-x) var(--crop-rest-y);
+		filter: none;
+		transform: scale(1.025);
+		transition: none;
+	}
+}

@@ -12,13 +12,13 @@
 .bc-line-reveal__line {
 	display: block;
 	overflow: hidden;
-	padding: 0.06em 0.04em 0.1em;
-	margin: -0.06em -0.04em -0.1em;
+	padding: 0.14em 0.04em 0.18em;
+	margin: -0.14em -0.04em -0.18em;
 }
 
 .bc-line-reveal__line > span {
 	display: block;
-	overflow-wrap: anywhere;
+	overflow-wrap: break-word;
 	white-space: normal;
 	animation: bc-line-reveal var(--line-duration) cubic-bezier(0.22, 1, 0.36, 1) both;
 	animation-delay: calc(var(--line-index) * var(--line-delay));

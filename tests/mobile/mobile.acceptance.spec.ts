@@ -30,7 +30,11 @@ test('library uses a touch-native component selector', async ({ page }) => {
 	await select.selectOption('media-shutter');
 	await expect(page.getByRole('heading', { name: 'Media Shutter' })).toBeVisible();
 	await picker.getByRole('button', { name: 'Next' }).click();
+	await expect(page.getByRole('heading', { name: 'Section Signal' })).toBeVisible();
+	await picker.getByRole('button', { name: 'Next' }).click();
 	await expect(page.getByRole('heading', { name: 'Edge Trace' })).toBeVisible();
+	await picker.getByRole('button', { name: 'Previous' }).click();
+	await expect(page.getByRole('heading', { name: 'Section Signal' })).toBeVisible();
 	await picker.getByRole('button', { name: 'Previous' }).click();
 	await expect(page.getByRole('heading', { name: 'Media Shutter' })).toBeVisible();
 

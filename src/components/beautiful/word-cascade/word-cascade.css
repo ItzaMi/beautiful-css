@@ -1,0 +1,52 @@
+.bc-word-cascade {
+	display: inline;
+	max-inline-size: 100%;
+}
+
+.bc-word-cascade__track {
+	display: inline;
+}
+
+.bc-word-cascade__unit {
+	display: inline-block;
+	padding: 0.14em 0.035em 0.18em;
+	margin: -0.14em -0.035em -0.18em;
+	overflow: hidden;
+	vertical-align: bottom;
+}
+
+.bc-word-cascade__unit > span {
+	display: inline-block;
+	animation: bc-word-cascade var(--word-duration) cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation-delay: calc(var(--word-index) * var(--word-delay));
+	transform-origin: left bottom;
+}
+
+.bc-word-cascade__accessible {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+@keyframes bc-word-cascade {
+	from {
+		opacity: 0;
+		transform: translateY(112%) skewY(3deg);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0) skewY(0);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bc-word-cascade__unit > span {
+		animation: none;
+	}
+}

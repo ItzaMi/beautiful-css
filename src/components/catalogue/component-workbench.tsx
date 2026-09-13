@@ -101,7 +101,7 @@ export function ComponentWorkbench({ sources }: ComponentWorkbenchProps) {
 						Change the real API, use the keyboard, and inspect the exact files you would install.
 					</p>
 				</div>
-				<span>Eight React components · Editable source · Visual tests</span>
+				<span>{componentCatalog.length} React components · Editable source · Visual tests</span>
 			</header>
 
 			<div className="explorer">

@@ -27,6 +27,29 @@
 			]
 		},
 		{
+			"name": "word-cascade",
+			"type": "registry:component",
+			"title": "Word Cascade",
+			"description": "A word-level entrance that preserves native text wrapping and reading order.",
+			"files": [
+				{
+					"path": "src/components/beautiful/word-cascade/word-cascade.tsx",
+					"type": "registry:component",
+					"target": "@components/beautiful/word-cascade/word-cascade.tsx"
+				},
+				{
+					"path": "src/components/beautiful/word-cascade/word-cascade.css",
+					"type": "registry:file",
+					"target": "@components/beautiful/word-cascade/word-cascade.css"
+				},
+				{
+					"path": "src/components/beautiful/types.ts",
+					"type": "registry:file",
+					"target": "@components/beautiful/types.ts"
+				}
+			]
+		},
+		{
 			"name": "character-shift",
 			"type": "registry:component",
 			"title": "Character Shift",
@@ -41,6 +64,29 @@
 					"path": "src/components/beautiful/character-shift/character-shift.css",
 					"type": "registry:file",
 					"target": "@components/beautiful/character-shift/character-shift.css"
+				},
+				{
+					"path": "src/components/beautiful/types.ts",
+					"type": "registry:file",
+					"target": "@components/beautiful/types.ts"
+				}
+			]
+		},
+		{
+			"name": "counter-roll",
+			"type": "registry:component",
+			"title": "Counter Roll",
+			"description": "A numeric value transition with tabular alignment and a single announced result.",
+			"files": [
+				{
+					"path": "src/components/beautiful/counter-roll/counter-roll.tsx",
+					"type": "registry:component",
+					"target": "@components/beautiful/counter-roll/counter-roll.tsx"
+				},
+				{
+					"path": "src/components/beautiful/counter-roll/counter-roll.css",
+					"type": "registry:file",
+					"target": "@components/beautiful/counter-roll/counter-roll.css"
 				},
 				{
 					"path": "src/components/beautiful/types.ts",
@@ -142,6 +188,29 @@
 			]
 		},
 		{
+			"name": "crop-shift",
+			"type": "registry:component",
+			"title": "Crop Shift",
+			"description": "A focal image crop with pointer response and stable keyboard and touch states.",
+			"files": [
+				{
+					"path": "src/components/beautiful/crop-shift/crop-shift.tsx",
+					"type": "registry:component",
+					"target": "@components/beautiful/crop-shift/crop-shift.tsx"
+				},
+				{
+					"path": "src/components/beautiful/crop-shift/crop-shift.css",
+					"type": "registry:file",
+					"target": "@components/beautiful/crop-shift/crop-shift.css"
+				},
+				{
+					"path": "src/components/beautiful/types.ts",
+					"type": "registry:file",
+					"target": "@components/beautiful/types.ts"
+				}
+			]
+		},
+		{
 			"name": "media-shutter",
 			"type": "registry:component",
 			"title": "Media Shutter",
@@ -156,6 +225,29 @@
 					"path": "src/components/beautiful/media-shutter/media-shutter.css",
 					"type": "registry:file",
 					"target": "@components/beautiful/media-shutter/media-shutter.css"
+				},
+				{
+					"path": "src/components/beautiful/types.ts",
+					"type": "registry:file",
+					"target": "@components/beautiful/types.ts"
+				}
+			]
+		},
+		{
+			"name": "section-signal",
+			"type": "registry:component",
+			"title": "Section Signal",
+			"description": "A section wrapper that exposes scroll or controlled progress through CSS.",
+			"files": [
+				{
+					"path": "src/components/beautiful/section-signal/section-signal.tsx",
+					"type": "registry:component",
+					"target": "@components/beautiful/section-signal/section-signal.tsx"
+				},
+				{
+					"path": "src/components/beautiful/section-signal/section-signal.css",
+					"type": "registry:file",
+					"target": "@components/beautiful/section-signal/section-signal.css"
 				},
 				{
 					"path": "src/components/beautiful/types.ts",

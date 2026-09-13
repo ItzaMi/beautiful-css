@@ -2,13 +2,17 @@
 
 import {
 	CharacterShift,
+	CounterRoll,
+	CropShift,
 	CursorField,
 	EdgeTrace,
 	FocusBeam,
 	LineReveal,
 	MediaShutter,
 	ProximityGrid,
-	SignalMarquee
+	SectionSignal,
+	SignalMarquee,
+	WordCascade
 } from '@/components/beautiful';
 import type { ComponentId, ControlValue } from '@/data/catalog';
 import './catalogue.css';
@@ -50,9 +54,13 @@ export function ComponentStage({
 	scenario = 'default'
 }: ComponentStageProps) {
 	const theme =
-		id === 'line-reveal' || id === 'proximity-grid' || id === 'media-shutter'
+		id === 'line-reveal' ||
+		id === 'word-cascade' ||
+		id === 'proximity-grid' ||
+		id === 'crop-shift' ||
+		id === 'media-shutter'
 			? 'paper'
-			: id === 'signal-marquee'
+			: id === 'signal-marquee' || id === 'counter-roll'
 				? 'signal'
 				: 'ink';
 	const eventProbe = scenario === 'event-probe';
@@ -68,7 +76,9 @@ export function ComponentStage({
 						lines={
 							scenario === 'long-content'
 								? ['A reveal should never sacrifice the words it carries.']
-								: ['Built slowly.', 'Remembered quickly.']
+								: scenario === 'type-metrics'
+									? ['Ångström, Évora & Água.', 'gypj QÇ — façade.']
+									: ['Built slowly.', 'Remembered quickly.']
 						}
 						delay={numberValue(values, 'delay', 110)}
 						duration={numberValue(values, 'duration', 760)}
@@ -77,19 +87,68 @@ export function ComponentStage({
 				</div>
 			)}
 
+			{id === 'word-cascade' && (
+				<div className="word-cascade-demo">
+					<div>
+						<WordCascade
+							text={
+								scenario === 'long-content'
+									? 'Independent visual tools should keep every word intact as the available measure changes.'
+									: scenario === 'type-metrics'
+										? 'Ångström, Évora, Água, façade and gypj stay whole.'
+										: 'Independent tools for expressive interfaces.'
+							}
+							delay={numberValue(values, 'delay', 55)}
+							duration={numberValue(values, 'duration', 560)}
+							replayKey={replayKey}
+						/>
+					</div>
+					<p>One phrase. Natural line breaks.</p>
+				</div>
+			)}
+
 			{id === 'character-shift' && (
 				<div className="character-demo">
 					<CharacterShift
-						text={scenario === 'long-content' ? 'Read the field notes' : 'Read the journal'}
+						text={
+							scenario === 'long-content'
+								? 'Read the field notes'
+								: scenario === 'type-metrics'
+									? 'Ångström, Évora & Água'
+									: 'Read the journal'
+						}
 						alternate={
 							scenario === 'long-content'
 								? 'Open the complete field journal'
-								: stringValue(values, 'alternate', 'Open the journal')
+								: scenario === 'type-metrics'
+									? 'gypj QÇ — façade'
+									: stringValue(values, 'alternate', 'Open the journal')
 						}
 						href="#character-shift"
 						duration={numberValue(values, 'duration', 320)}
 					/>
 					<p>Hover or focus the line</p>
+				</div>
+			)}
+
+			{id === 'counter-roll' && (
+				<div className="counter-roll-demo">
+					<header>
+						<span>Archive count</span>
+						<span>Updated live</span>
+					</header>
+					<div>
+						<CounterRoll
+							value={scenario === 'large-number' ? 9876543.21 : numberValue(values, 'value', 1842)}
+							previousValue={0}
+							minimumIntegerDigits={scenario === 'large-number' ? 1 : 4}
+							fractionDigits={scenario === 'large-number' ? 2 : 0}
+							prefix={scenario === 'large-number' ? '€' : ''}
+							duration={numberValue(values, 'duration', 620)}
+						/>
+						<span>works catalogued</span>
+					</div>
+					<p>Across fourteen independent practices.</p>
 				</div>
 			)}
 
@@ -198,6 +257,43 @@ export function ComponentStage({
 						}
 						label="Study in form / 01"
 					/>
+				</div>
+			)}
+
+			{id === 'crop-shift' && (
+				<div className="crop-shift-demo">
+					<CropShift
+						src="/media-poster-art.svg"
+						alt="Geometric study in blue, black, and white"
+						href="#crop-shift"
+						focalX={numberValue(values, 'focalX', 58)}
+						focalY={numberValue(values, 'focalY', 46)}
+						range={scenario === 'wide-travel' ? 30 : numberValue(values, 'range', 14)}
+						duration={numberValue(values, 'duration', 680)}
+						label="Shift the frame"
+						onPointerMove={
+							eventProbe ? (event) => countProbeEvent(event.currentTarget, 'moves') : undefined
+						}
+						onPointerLeave={
+							eventProbe ? (event) => countProbeEvent(event.currentTarget, 'leaves') : undefined
+						}
+					/>
+				</div>
+			)}
+
+			{id === 'section-signal' && (
+				<div className="section-signal-demo">
+					<SectionSignal
+						progress={scenario === 'complete' ? 1 : numberValue(values, 'progress', 0.58)}
+						rail={stringValue(values, 'rail', 'start') === 'end' ? 'end' : 'start'}
+					>
+						<span>02 / Field notes</span>
+						<h2>A quiet signal for long-form structure.</h2>
+						<p>
+							The section remains ordinary content. The rail only makes its current reading state
+							visible.
+						</p>
+					</SectionSignal>
 				</div>
 			)}
 

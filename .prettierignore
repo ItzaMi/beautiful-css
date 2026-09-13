@@ -1,4 +1,6 @@
 playwright-report
+motion-report
+motion-artifacts
 test-results
 .next
 next-env.d.ts

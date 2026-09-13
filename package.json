@@ -13,6 +13,7 @@
 		"test:visual": "playwright test",
 		"test:visual:update": "playwright test --update-snapshots",
 		"test:visual:report": "playwright show-report",
+		"test:motion": "playwright test --config playwright.motion.config.ts",
 		"validate": "yarn typecheck && yarn lint && yarn registry:validate && yarn build && yarn test:visual"
 	},
 	"devDependencies": {

@@ -6,7 +6,7 @@
 	height: 100%;
 	color: inherit;
 	background: #111310;
-	cursor: crosshair;
+	cursor: pointer;
 	text-decoration: none;
 }
 
@@ -15,11 +15,11 @@
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	filter: saturate(0.72) contrast(1.05);
-	transform: scale(1.04);
+	filter: grayscale(0.72) saturate(0.55) brightness(0.78) contrast(1.08);
+	transform: scale(1.025);
 	transition:
-		filter 700ms ease,
-		transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+		filter 520ms ease,
+		transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .bc-media-shutter__panes {
@@ -32,15 +32,17 @@
 
 .bc-media-shutter__panes i {
 	display: block;
-	background: #111310;
-	transform-origin: top;
-	transition: transform 760ms cubic-bezier(0.77, 0, 0.18, 1);
-	transition-delay: calc(var(--pane-index) * 48ms);
+	background: color-mix(in srgb, #111310 38%, transparent);
+	border-right: 1px solid color-mix(in srgb, #f7f7f5 5%, transparent);
+	transform-origin: center;
+	transition: transform 520ms cubic-bezier(0.76, 0, 0.24, 1);
+	transition-delay: calc(var(--pane-distance) * 28ms);
+	will-change: transform;
 }
 
 .bc-media-shutter:hover .bc-media-shutter__panes i,
 .bc-media-shutter:focus-visible .bc-media-shutter__panes i {
-	transform: scaleY(0);
+	transform: scaleX(0);
 }
 
 .bc-media-shutter:hover img,
@@ -51,18 +53,23 @@
 
 .bc-media-shutter__caption {
 	position: absolute;
+	top: 1rem;
 	right: 1rem;
-	bottom: 1rem;
-	padding: 0.45rem 0.6rem;
-	color: #111310;
-	background: #f7f7f5;
+	padding: 0.42rem 0.55rem;
+	color: #f7f7f5;
+	background: color-mix(in srgb, #111310 68%, transparent);
+	backdrop-filter: blur(8px);
 	font-size: 0.65rem;
-	transform: translateY(160%);
-	transition: transform 480ms cubic-bezier(0.16, 1, 0.3, 1) 400ms;
+	opacity: 0.72;
+	transform: translateY(0.25rem);
+	transition:
+		opacity 320ms ease,
+		transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .bc-media-shutter:hover .bc-media-shutter__caption,
 .bc-media-shutter:focus-visible .bc-media-shutter__caption {
+	opacity: 1;
 	transform: translateY(0);
 }
 
@@ -71,12 +78,13 @@
 }
 
 .bc-media-shutter.is-horizontal .bc-media-shutter__panes i {
-	transform-origin: left;
+	border-right: 0;
+	border-bottom: 1px solid color-mix(in srgb, #f7f7f5 5%, transparent);
 }
 
 .bc-media-shutter.is-horizontal:hover .bc-media-shutter__panes i,
 .bc-media-shutter.is-horizontal:focus-visible .bc-media-shutter__panes i {
-	transform: scaleX(0);
+	transform: scaleY(0);
 }
 
 @media (prefers-reduced-motion: reduce), (hover: none) {
@@ -91,6 +99,7 @@
 	}
 
 	.bc-media-shutter__caption {
+		opacity: 1;
 		transform: none;
 		transition: none;
 	}

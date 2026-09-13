@@ -17,9 +17,8 @@
 	);
 	transform: scale(calc(0.82 + var(--proximity) * 0.18));
 	transition:
-		background 160ms ease,
-		transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
-	transition-delay: var(--cell-delay);
+		background 110ms ease,
+		transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .bc-proximity-grid i::after {

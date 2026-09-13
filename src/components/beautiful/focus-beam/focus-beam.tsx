@@ -25,6 +25,10 @@ export function FocusBeam({
 	intensity = 0.18,
 	className = '',
 	style,
+	onPointerMove,
+	onPointerLeave,
+	onFocus,
+	onBlur,
 	...props
 }: FocusBeamProps) {
 	const hostRef = useRef<HTMLDivElement>(null);
@@ -32,10 +36,16 @@ export function FocusBeam({
 	const pendingPointer = useRef({ x: 0, y: 0 });
 	const pointerEngaged = useRef(false);
 	const focusEngaged = useRef(false);
+	const focusedElement = useRef<HTMLElement | null>(null);
+	const safeRadius = Math.max(1, radius);
+	const safeIntensity = Math.max(0, Math.min(1, intensity));
 	const beamStyle: CustomProperties = {
 		'--beam-color': color,
-		'--beam-radius': `${Math.max(1, radius)}px`,
-		'--beam-intensity': Math.max(0, Math.min(1, intensity)),
+		'--beam-radius': `${safeRadius}px`,
+		'--beam-diameter': `${safeRadius * 2}px`,
+		'--beam-core-radius': `${Math.max(24, safeRadius * 0.24)}px`,
+		'--beam-intensity': `${safeIntensity * 100}%`,
+		'--beam-core-intensity': `${Math.min(100, safeIntensity * 145)}%`,
 		'--beam-x': '50%',
 		'--beam-y': '50%',
 		...style
@@ -66,6 +76,7 @@ export function FocusBeam({
 		pendingPointer.current = { x: event.clientX, y: event.clientY };
 		pointerEngaged.current = true;
 		syncEngagement();
+		onPointerMove?.(event);
 		if (frameRef.current !== null) return;
 		frameRef.current = requestAnimationFrame(() => {
 			setPosition(pendingPointer.current.x, pendingPointer.current.y);
@@ -75,37 +86,57 @@ export function FocusBeam({
 
 	function handleFocus(event: FocusEvent<HTMLDivElement>) {
 		const host = hostRef.current;
-		if (!host || !(event.target instanceof HTMLElement)) return;
-		const targetBounds = event.target.getBoundingClientRect();
-		setPosition(
-			targetBounds.left + targetBounds.width / 2,
-			targetBounds.top + targetBounds.height / 2
-		);
-		focusEngaged.current = true;
-		syncEngagement();
+		if (host && event.target instanceof HTMLElement) {
+			const targetBounds = event.target.getBoundingClientRect();
+			setPosition(
+				targetBounds.left + targetBounds.width / 2,
+				targetBounds.top + targetBounds.height / 2
+			);
+			focusedElement.current = event.target;
+			focusEngaged.current = true;
+			syncEngagement();
+		}
+		onFocus?.(event);
 	}
 
 	function handleBlur(event: FocusEvent<HTMLDivElement>) {
-		if (event.relatedTarget instanceof Node && hostRef.current?.contains(event.relatedTarget))
-			return;
-		focusEngaged.current = false;
+		if (!(event.relatedTarget instanceof Node && hostRef.current?.contains(event.relatedTarget))) {
+			focusedElement.current = null;
+			focusEngaged.current = false;
+			syncEngagement();
+		}
+		onBlur?.(event);
+	}
+
+	function handlePointerLeave(event: PointerEvent<HTMLDivElement>) {
+		if (frameRef.current !== null) {
+			cancelAnimationFrame(frameRef.current);
+			frameRef.current = null;
+		}
+		pointerEngaged.current = false;
+		const focused = focusedElement.current;
+		if (focusEngaged.current && focused) {
+			const targetBounds = focused.getBoundingClientRect();
+			setPosition(
+				targetBounds.left + targetBounds.width / 2,
+				targetBounds.top + targetBounds.height / 2
+			);
+		}
 		syncEngagement();
+		onPointerLeave?.(event);
 	}
 
 	return (
 		<div
+			{...props}
 			ref={hostRef}
 			className={`bc-focus-beam ${className}`.trim()}
 			style={beamStyle}
 			data-engaged="false"
 			onPointerMove={handlePointerMove}
-			onPointerLeave={() => {
-				pointerEngaged.current = false;
-				syncEngagement();
-			}}
+			onPointerLeave={handlePointerLeave}
 			onFocus={handleFocus}
 			onBlur={handleBlur}
-			{...props}
 		>
 			<div className="bc-focus-beam__field" aria-hidden="true" />
 			<div className="bc-focus-beam__content">{children}</div>

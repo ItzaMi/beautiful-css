@@ -7,14 +7,27 @@
 .bc-focus-beam__field {
 	position: absolute;
 	z-index: -1;
-	inset: 0;
-	background: radial-gradient(
-		circle var(--beam-radius) at var(--beam-x) var(--beam-y),
-		color-mix(in srgb, var(--beam-color) calc(var(--beam-intensity) * 100%), transparent),
-		transparent 70%
-	);
-	opacity: 0.45;
-	transition: opacity 320ms ease;
+	top: var(--beam-y);
+	left: var(--beam-x);
+	width: var(--beam-diameter);
+	height: var(--beam-diameter);
+	background:
+		radial-gradient(
+			circle var(--beam-core-radius) at center,
+			color-mix(in srgb, var(--beam-color) var(--beam-core-intensity), transparent),
+			transparent 72%
+		),
+		radial-gradient(
+			circle var(--beam-radius) at center,
+			color-mix(in srgb, var(--beam-color) var(--beam-intensity), transparent),
+			transparent 72%
+		);
+	opacity: 0.34;
+	transform: translate(-50%, -50%);
+	transition:
+		opacity 260ms ease,
+		top 420ms cubic-bezier(0.22, 1, 0.36, 1),
+		left 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .bc-focus-beam[data-engaged='true'] .bc-focus-beam__field,

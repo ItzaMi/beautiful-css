@@ -12,41 +12,80 @@
 	isolation: isolate;
 }
 
+.bc-edge-trace::before {
+	position: absolute;
+	z-index: 0;
+	inset: 0;
+	border: var(--trace-width) solid color-mix(in srgb, var(--trace-color) 18%, transparent);
+	border-radius: inherit;
+	content: '';
+	pointer-events: none;
+}
+
 .bc-edge-trace__line {
 	position: absolute;
-	z-index: -2;
-	inset: -120%;
+	z-index: 2;
+	inset: 0;
+	padding: var(--trace-width);
+	border-radius: inherit;
 	background: conic-gradient(
 		from var(--trace-angle),
-		transparent 0 42%,
-		var(--trace-color) 48% 52%,
-		transparent 58% 100%
+		transparent 0 72%,
+		color-mix(in srgb, var(--trace-color) 18%, transparent) 79%,
+		var(--trace-color) 88%,
+		transparent 96% 100%
 	);
-	animation: bc-edge-trace var(--trace-duration) linear infinite paused;
+	-webkit-mask:
+		linear-gradient(#000 0 0) content-box,
+		linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	mask-composite: exclude;
+	opacity: 0;
+	pointer-events: none;
 }
 
 .bc-edge-trace.is-active .bc-edge-trace__line,
 .bc-edge-trace:hover .bc-edge-trace__line,
 .bc-edge-trace:focus-within .bc-edge-trace__line {
-	animation-play-state: running;
+	animation: bc-edge-trace var(--trace-duration) cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .bc-edge-trace__content {
+	position: relative;
+	z-index: 1;
 	height: 100%;
 	background: var(--trace-background, #111310);
 	border-radius: max(0px, calc(var(--trace-radius) - var(--trace-width)));
 }
 
 @keyframes bc-edge-trace {
+	0% {
+		--trace-angle: -80deg;
+		opacity: 0;
+	}
+
+	16% {
+		opacity: 1;
+	}
+
+	78% {
+		opacity: 1;
+	}
+
 	to {
-		--trace-angle: 360deg;
+		--trace-angle: 280deg;
+		opacity: 0;
 	}
 }
 
 @media (prefers-reduced-motion: reduce) {
 	.bc-edge-trace__line {
-		animation: none;
-		background: var(--trace-color);
-		opacity: 0.8;
+		display: none;
+	}
+
+	.bc-edge-trace.is-active::before,
+	.bc-edge-trace:hover::before,
+	.bc-edge-trace:focus-within::before {
+		border-color: color-mix(in srgb, var(--trace-color) 72%, transparent);
 	}
 }

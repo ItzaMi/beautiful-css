@@ -41,5 +41,18 @@ for (const visualCase of visualCases) {
 		}
 
 		await expect(component).toHaveScreenshot(`${visualCase.id}-interaction.png`);
+
+		if (visualCase.id === 'cursor-field' || visualCase.id === 'proximity-grid') {
+			const pointerSurface = component.locator(
+				visualCase.id === 'cursor-field' ? '.bc-cursor-field' : '.bc-proximity-grid'
+			);
+			await pointerSurface.dispatchEvent('pointerleave', { pointerType: 'mouse' });
+		} else {
+			await page.evaluate(() => {
+				if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+			});
+		}
+
+		await expect(component).toHaveScreenshot(`${visualCase.id}-interaction-exit.png`);
 	});
 }

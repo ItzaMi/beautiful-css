@@ -374,9 +374,8 @@
 }
 
 .media-demo {
-	width: min(760px, calc(100% - 48px));
-	height: min(500px, 56vw);
-	min-height: 330px;
+	width: min(680px, calc(100% - 48px));
+	aspect-ratio: 4 / 3;
 }
 
 .trace-demo {
@@ -602,10 +601,6 @@
 		align-items: flex-start;
 		flex-direction: column;
 		gap: 0.4rem;
-	}
-
-	.media-demo {
-		height: 360px;
 	}
 
 	.component-description,

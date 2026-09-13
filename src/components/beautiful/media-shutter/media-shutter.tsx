@@ -21,6 +21,7 @@ export function MediaShutter({
 	...props
 }: MediaShutterProps) {
 	const safePanes = Math.max(1, Math.min(16, Math.round(panes)));
+	const paneCenter = (safePanes - 1) / 2;
 	const shutterStyle: CustomProperties = { '--shutter-panes': safePanes, ...style };
 
 	return (
@@ -34,7 +35,14 @@ export function MediaShutter({
 			<img src={src} alt={alt} />
 			<span className="bc-media-shutter__panes" aria-hidden="true">
 				{Array.from({ length: safePanes }, (_, index) => (
-					<i style={{ '--pane-index': index } as CustomProperties} key={index} />
+					<i
+						style={
+							{
+								'--pane-distance': Math.abs(index - paneCenter)
+							} as CustomProperties
+						}
+						key={index}
+					/>
 				))}
 			</span>
 			<span className="bc-media-shutter__caption">{label}</span>

@@ -117,6 +117,10 @@ Every component and block also has an isolated preview route. Playwright capture
 mobile/touch, reduced-motion, and meaningful interaction states. Baseline changes are reviewed as
 product changes; green snapshots confirm consistency, not aesthetic quality by themselves.
 
+Default-state snapshots are not enough for motion work. Content-stress and parameter-extreme cases
+must prove responsive containment, interaction-exit cases must prove effects reset, and the separate
+motion report must be reviewed for clipping, pacing, easing, and undesirable intermediate frames.
+
 ## Catalogue experience
 
 The catalogue is a working surface, not a wall of thumbnails. Visitors choose one component and

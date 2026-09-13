@@ -1,7 +1,8 @@
+import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import { getBlockPreview } from '@/blocks/preview-registry';
 import { BlockStage } from '@/components/catalogue/block-stage';
-import { ComponentStage } from '@/components/catalogue/component-stage';
+import { PreviewStage } from '@/components/catalogue/preview-stage';
 import { getComponentSpec } from '@/data/catalog';
 import { visualCases } from '@/data/visual-cases';
 
@@ -31,7 +32,9 @@ export default async function VisualPreviewPage({
 
 	return (
 		<div className="visual-test-page">
-			<ComponentStage id={component.id} values={component.defaultValues} standalone />
+			<Suspense fallback={null}>
+				<PreviewStage id={component.id} values={component.defaultValues} />
+			</Suspense>
 		</div>
 	);
 }

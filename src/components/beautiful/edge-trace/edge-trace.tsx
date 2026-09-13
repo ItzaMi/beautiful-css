@@ -16,7 +16,7 @@ export function EdgeTrace({
 	color = '#405cff',
 	width = 1,
 	radius = 2,
-	duration = 4.5,
+	duration = 1.15,
 	active = false,
 	className = '',
 	style,
@@ -26,7 +26,7 @@ export function EdgeTrace({
 		'--trace-color': color,
 		'--trace-width': `${Math.max(0, width)}px`,
 		'--trace-radius': `${Math.max(0, radius)}px`,
-		'--trace-duration': `${Math.max(0.1, duration)}s`,
+		'--trace-duration': `${Math.max(0.3, duration)}s`,
 		...style
 	};
 

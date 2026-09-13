@@ -20,7 +20,6 @@ export function SignalMarquee({
 	style,
 	...props
 }: SignalMarqueeProps) {
-	const repeated = [...items, ...items];
 	const motionStyle: CustomProperties = {
 		'--marquee-duration': `${Math.max(1, duration)}s`,
 		...style
@@ -42,11 +41,12 @@ export function SignalMarquee({
 		>
 			<span className="bc-accessible-copy">{items.join(', ')}</span>
 			<div className="bc-signal-marquee__track" aria-hidden="true">
-				{repeated.map((item, index) => (
-					<span key={`${index}-${item}`}>
-						{item}
-						<i />
-					</span>
+				{[0, 1].map((group) => (
+					<div className="bc-signal-marquee__group" key={group}>
+						{items.map((item, index) => (
+							<span key={`${index}-${item}`}>{item}</span>
+						))}
+					</div>
 				))}
 			</div>
 		</div>

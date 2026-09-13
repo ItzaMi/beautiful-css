@@ -1,5 +1,6 @@
 .bc-line-reveal {
 	display: inline-grid;
+	max-inline-size: 100%;
 	line-height: 0.94;
 	letter-spacing: -0.065em;
 }
@@ -17,7 +18,8 @@
 
 .bc-line-reveal__line > span {
 	display: block;
-	white-space: nowrap;
+	overflow-wrap: anywhere;
+	white-space: normal;
 	animation: bc-line-reveal var(--line-duration) cubic-bezier(0.22, 1, 0.36, 1) both;
 	animation-delay: calc(var(--line-index) * var(--line-delay));
 	transform-origin: left bottom;

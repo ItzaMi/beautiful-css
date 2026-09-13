@@ -3,6 +3,8 @@ node_modules
 .next
 *.tsbuildinfo
 playwright-report
+motion-report
+motion-artifacts
 test-results
 .env
 .env.*

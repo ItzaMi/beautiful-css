@@ -55,11 +55,15 @@ Playwright compares desktop, mobile/touch, reduced-motion, and interaction scree
 yarn test:visual
 yarn test:visual:update  # intentionally accept reviewed changes
 yarn test:visual:report  # inspect failures and image diffs
+yarn test:motion         # generate a review report with timed interaction frames
 ```
 
 Blocks use the same harness. Add a focused preview to `src/blocks/preview-registry.tsx`, then register
 its id in `src/data/visual-cases.ts`; it enters the same viewport matrix. Baselines are
 platform-specific and should be updated in the same environment used for review.
+
+The motion report is deliberately separate from pixel-diff validation: stable snapshots guard final
+states, while timed frames make easing, clipping, and intermediate interaction quality reviewable.
 
 ## Checks
 

@@ -107,15 +107,15 @@ export const componentCatalog: ComponentSpec[] = [
 		name: 'Character Shift',
 		category: 'Text',
 		access: 'Free',
-		description: 'A staggered character exchange for compact labels, links, and editorial titles.',
+		description: 'A clipped phrase exchange for compact links and editorial titles.',
 		principle: 'Pointer and keyboard focus produce the same state.',
 		usage: `<CharacterShift
   text="Read the journal"
   alternate="Open the full journal"
   href="/journal"
-  duration={440}
+  duration={320}
 />`,
-		defaultValues: { alternate: 'Open the journal', duration: 440 },
+		defaultValues: { alternate: 'Open the journal', duration: 320 },
 		controls: [
 			{
 				key: 'alternate',
@@ -130,8 +130,8 @@ export const componentCatalog: ComponentSpec[] = [
 				key: 'duration',
 				label: 'Duration',
 				type: 'range',
-				min: 120,
-				max: 900,
+				min: 180,
+				max: 600,
 				step: 20,
 				unit: 'ms'
 			}
@@ -152,7 +152,7 @@ export const componentCatalog: ComponentSpec[] = [
 			{
 				name: 'duration',
 				type: 'number',
-				defaultValue: '420',
+				defaultValue: '320',
 				notes: 'Transition duration in milliseconds.'
 			},
 			{
@@ -172,8 +172,8 @@ export const componentCatalog: ComponentSpec[] = [
 		name: 'Signal Marquee',
 		category: 'Text',
 		access: 'Free',
-		description: 'A continuous text rail with externally controllable pause behaviour.',
-		principle: 'Repeated content is hidden from assistive technology and motion can be stopped.',
+		description: 'A continuous text rail that resolves into a complete layout without motion.',
+		principle: 'Repeated content is hidden from assistive technology and never freezes half-read.',
 		usage: `<SignalMarquee
   items={['Independent', 'Responsive', 'Editable']}
   duration={24}
@@ -230,8 +230,9 @@ export const componentCatalog: ComponentSpec[] = [
 		name: 'Cursor Field',
 		category: 'Background',
 		access: 'Free',
-		description: 'An ambient constellation that gathers light around the visitor’s position.',
-		principle: 'Decorative, frame-throttled, and absent from the accessibility tree.',
+		description: 'A distributed constellation that gathers and releases around the visitor.',
+		principle:
+			'Decorative, frame-throttled, fully resettable, and absent from the accessibility tree.',
 		usage: `<div className="hero">
   <CursorField color="#8fa1ff" count={46} />
   <h1>Your content stays above it.</h1>
@@ -262,7 +263,7 @@ export const componentCatalog: ComponentSpec[] = [
 		name: 'Focus Beam',
 		category: 'Pointer',
 		access: 'Free',
-		description: 'A soft field that follows pointer position and focus within existing content.',
+		description: 'A soft field that travels between pointer position and focused content.',
 		principle: 'Wraps existing interactive primitives without replacing them.',
 		usage: `<FocusBeam color="#405cff" radius={280}>
   <YourExistingComponent />
@@ -331,7 +332,8 @@ export const componentCatalog: ComponentSpec[] = [
 		name: 'Media Shutter',
 		category: 'Media',
 		access: 'Pro',
-		description: 'A directional reveal that turns image discovery into a measured sequence.',
+		description:
+			'A directional curtain that keeps the image legible before revealing its full color.',
 		principle: 'Touch and reduced-motion users receive the uncovered semantic image.',
 		usage: `<MediaShutter
   src="/project-01.jpg"
@@ -385,24 +387,23 @@ export const componentCatalog: ComponentSpec[] = [
 		name: 'Edge Trace',
 		category: 'Surface',
 		access: 'Pro',
-		description:
-			'A narrow moving perimeter for moments that need attention without a louder container.',
+		description: 'A one-shot perimeter signal for moments that need restrained attention.',
 		principle: 'Decorates arbitrary content and never owns its interaction.',
-		usage: `<EdgeTrace color="#8fa1ff" width={1} duration={5}>
+		usage: `<EdgeTrace color="#8fa1ff" width={1} duration={1.15}>
   <YourExistingCard />
 </EdgeTrace>`,
-		defaultValues: { color: '#8fa1ff', width: 1, duration: 5, active: false },
+		defaultValues: { color: '#8fa1ff', width: 1, duration: 1.15, active: false },
 		controls: [
 			{ key: 'color', label: 'Trace color', type: 'color' },
-			{ key: 'active', label: 'Keep tracing', type: 'toggle' },
+			{ key: 'active', label: 'Run trace', type: 'toggle' },
 			{ key: 'width', label: 'Line width', type: 'range', min: 1, max: 5, step: 1, unit: 'px' },
 			{
 				key: 'duration',
-				label: 'Loop duration',
+				label: 'Sweep duration',
 				type: 'range',
-				min: 2,
-				max: 10,
-				step: 0.5,
+				min: 0.6,
+				max: 2.4,
+				step: 0.05,
 				unit: 's'
 			}
 		],
@@ -415,12 +416,17 @@ export const componentCatalog: ComponentSpec[] = [
 				defaultValue: '2',
 				notes: 'Outer corner radius in pixels.'
 			},
-			{ name: 'duration', type: 'number', defaultValue: '4.5', notes: 'Loop duration in seconds.' },
+			{
+				name: 'duration',
+				type: 'number',
+				defaultValue: '1.15',
+				notes: 'Sweep duration in seconds.'
+			},
 			{
 				name: 'active',
 				type: 'boolean',
 				defaultValue: 'false',
-				notes: 'Runs without waiting for hover or focus.'
+				notes: 'Runs once without waiting for hover or focus.'
 			},
 			{
 				name: 'children',

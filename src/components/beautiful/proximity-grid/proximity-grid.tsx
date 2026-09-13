@@ -18,6 +18,8 @@ export function ProximityGrid({
 	reach = 170,
 	className = '',
 	style,
+	onPointerMove,
+	onPointerLeave,
 	...props
 }: ProximityGridProps) {
 	const hostRef = useRef<HTMLDivElement>(null);
@@ -69,6 +71,7 @@ export function ProximityGrid({
 
 	function handlePointerMove(event: PointerEvent<HTMLDivElement>) {
 		pendingPointer.current = { x: event.clientX, y: event.clientY };
+		onPointerMove?.(event);
 		if (frameRef.current !== null) return;
 		frameRef.current = requestAnimationFrame(() => {
 			draw(pendingPointer.current.x, pendingPointer.current.y);
@@ -76,19 +79,24 @@ export function ProximityGrid({
 		});
 	}
 
-	function resetCells() {
+	function resetCells(event: PointerEvent<HTMLDivElement>) {
+		if (frameRef.current !== null) {
+			cancelAnimationFrame(frameRef.current);
+			frameRef.current = null;
+		}
 		cellRefs.current.forEach((node) => node?.style.setProperty('--proximity', '0'));
+		onPointerLeave?.(event);
 	}
 
 	return (
 		<div
+			{...props}
 			ref={hostRef}
 			className={`bc-proximity-grid ${className}`.trim()}
 			style={gridStyle}
 			onPointerMove={handlePointerMove}
 			onPointerLeave={resetCells}
 			aria-hidden="true"
-			{...props}
 		>
 			{cells.map((cell, index) => (
 				<i
@@ -97,8 +105,7 @@ export function ProximityGrid({
 					}}
 					style={
 						{
-							'--proximity': 0,
-							'--cell-delay': `${(cell.index * 19) % 260}ms`
+							'--proximity': 0
 						} as CustomProperties
 					}
 					key={cell.index}

@@ -17,16 +17,16 @@
 		transparent 67%
 	);
 	border-radius: 50%;
-	opacity: 0.25;
+	opacity: var(--halo-rest-opacity);
 	transform: translate(-50%, -50%);
 	transition:
-		top 80ms linear,
-		left 80ms linear,
-		opacity 300ms ease;
+		top 140ms cubic-bezier(0.22, 1, 0.36, 1),
+		left 140ms cubic-bezier(0.22, 1, 0.36, 1),
+		opacity 240ms ease;
 }
 
 .bc-cursor-field[data-active='true'] .bc-cursor-field__halo {
-	opacity: 0.55;
+	opacity: var(--halo-active-opacity);
 }
 
 .bc-cursor-field i {
@@ -39,11 +39,12 @@
 	border-radius: 50%;
 	opacity: var(--point-signal);
 	box-shadow: 0 0 12px color-mix(in srgb, var(--field-color) var(--point-glow), transparent);
-	transform: translate(-50%, -50%) scale(var(--point-scale));
+	transform: translate(calc(-50% + var(--point-shift-x)), calc(-50% + var(--point-shift-y)))
+		scale(var(--point-scale));
 	transition:
-		opacity 120ms ease,
-		box-shadow 160ms ease,
-		transform 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
+		opacity 140ms ease,
+		box-shadow 180ms ease,
+		transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -5,6 +5,10 @@ import './block-collection.css';
 
 const branch = 'concept/visual-component-library';
 
+type BlockCollectionProps = {
+	mode: 'showcase' | 'library';
+};
+
 const blocks = [
 	{
 		id: 'editorial-project-hero',
@@ -13,7 +17,7 @@ const blocks = [
 			'Line reveal, media shutter, and edge trace composed into a working project entry.',
 		preview: (
 			<EditorialProjectHero
-				imageSrc="/media-poster.svg"
+				imageSrc="/media-poster-art.svg"
 				imageAlt="Geometric architectural study in blue, black, and white"
 			/>
 		)
@@ -26,41 +30,52 @@ const blocks = [
 	}
 ] as const;
 
-export function BlockCollection() {
+export function BlockCollection({ mode }: BlockCollectionProps) {
+	const isLibrary = mode === 'library';
+
 	return (
-		<section className="blocks" id="blocks">
+		<section className={`blocks is-${mode}`} id="blocks">
 			<header className="blocks__intro">
 				<div>
-					<p>Composed examples</p>
-					<h2>Components become useful in company.</h2>
+					<p>{isLibrary ? 'Complete sections' : 'In context'}</p>
+					<h2>{isLibrary ? 'Start with a composed section.' : 'See what the pieces become.'}</h2>
 				</div>
 				<p>
-					Two complete, responsive sections. Install the editable block source together with the
-					components it depends on.
+					{isLibrary
+						? 'Each block includes its editable source and the visual components it depends on.'
+						: 'Components should earn their place inside real content, at real scale.'}
 				</p>
 			</header>
 
 			<div className="blocks__list">
-				{blocks.map((block, index) => {
+				{blocks.map((block) => {
 					const command = `npx shadcn@latest add ItzaMi/beautiful-css/${block.id}#${branch}`;
 					return (
 						<article className="block-showcase" key={block.id}>
 							<header className="block-showcase__header">
-								<span>{String(index + 1).padStart(2, '0')}</span>
 								<div>
 									<h3>{block.name}</h3>
-									<p>{block.description}</p>
+									{isLibrary && <p>{block.description}</p>}
 								</div>
 								<div className="block-showcase__actions">
-									<CopyInstallButton command={command} />
-									<a href={`/preview/block/${block.id}`} target="_blank" rel="noreferrer">
-										Open preview
-									</a>
+									{isLibrary ? (
+										<a href={`/preview/block/${block.id}`} target="_blank" rel="noreferrer">
+											Open preview
+										</a>
+									) : (
+										<a href="/library#blocks">View in library</a>
+									)}
 								</div>
 							</header>
-							<div className="block-showcase__command" aria-label={`${block.name} install command`}>
-								<code>{command}</code>
-							</div>
+							{isLibrary && (
+								<details className="block-showcase__install">
+									<summary>Optional CLI install</summary>
+									<div aria-label={`${block.name} install command`}>
+										<code>{command}</code>
+										<CopyInstallButton command={command} />
+									</div>
+								</details>
+							)}
 							<div className="block-showcase__preview">{block.preview}</div>
 						</article>
 					);

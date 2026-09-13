@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState, type ChangeEvent } from 'react';
+import { useEffect, useMemo, useState, type ChangeEvent } from 'react';
 import {
 	componentCatalog,
 	type ComponentControl,
@@ -21,7 +21,6 @@ export function ComponentWorkbench({ sources }: ComponentWorkbenchProps) {
 	});
 	const [replayKey, setReplayKey] = useState(0);
 	const [copyStatus, setCopyStatus] = useState('');
-	const pickerRef = useRef<HTMLElement>(null);
 	const activeComponent = useMemo(
 		() => componentCatalog.find((component) => component.id === activeId) ?? componentCatalog[0],
 		[activeId]
@@ -48,14 +47,6 @@ export function ComponentWorkbench({ sources }: ComponentWorkbenchProps) {
 		};
 	}, []);
 
-	useEffect(() => {
-		const picker = pickerRef.current;
-		const activeButton = picker?.querySelector<HTMLElement>(`[data-component-id="${activeId}"]`);
-		if (picker && activeButton && picker.scrollWidth > picker.clientWidth) {
-			activeButton.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
-		}
-	}, [activeId]);
-
 	function selectComponent(id: ComponentId) {
 		const component = componentCatalog.find((item) => item.id === id) ?? componentCatalog[0];
 		setActiveId(component.id);
@@ -64,6 +55,11 @@ export function ComponentWorkbench({ sources }: ComponentWorkbenchProps) {
 		if (window.location.hash !== `#${id}`) {
 			window.history.pushState({ component: id }, '', `#${id}`);
 		}
+	}
+
+	function selectAdjacentComponent(direction: -1 | 1) {
+		const nextIndex = Math.max(0, Math.min(componentCatalog.length - 1, activeIndex + direction));
+		selectComponent(componentCatalog[nextIndex].id);
 	}
 
 	function updateControl(
@@ -109,6 +105,42 @@ export function ComponentWorkbench({ sources }: ComponentWorkbenchProps) {
 			</header>
 
 			<div className="explorer">
+				<div className="component-mobile-picker">
+					<label>
+						<span>Component</span>
+						<select
+							aria-label="Choose a component"
+							value={activeId}
+							onChange={(event) => selectComponent(event.currentTarget.value as ComponentId)}
+						>
+							{componentCatalog.map((component) => (
+								<option value={component.id} key={component.id}>
+									{component.name}
+								</option>
+							))}
+						</select>
+					</label>
+					<div aria-label="Move through components">
+						<button
+							type="button"
+							onClick={() => selectAdjacentComponent(-1)}
+							disabled={activeIndex === 0}
+						>
+							Previous
+						</button>
+						<span aria-live="polite">
+							{activeIndex + 1} / {componentCatalog.length}
+						</span>
+						<button
+							type="button"
+							onClick={() => selectAdjacentComponent(1)}
+							disabled={activeIndex === componentCatalog.length - 1}
+						>
+							Next
+						</button>
+					</div>
+				</div>
+
 				<aside className="component-picker">
 					<p>
 						<span>First collection</span>
@@ -116,7 +148,7 @@ export function ComponentWorkbench({ sources }: ComponentWorkbenchProps) {
 							{activeIndex + 1} of {componentCatalog.length}
 						</span>
 					</p>
-					<nav aria-label="Choose a component" ref={pickerRef}>
+					<nav aria-label="Choose a component">
 						{componentCatalog.map((component) => (
 							<button
 								type="button"
@@ -151,13 +183,6 @@ export function ComponentWorkbench({ sources }: ComponentWorkbenchProps) {
 							</a>
 						</div>
 					</header>
-
-					<div className="install-command" aria-label={`${activeComponent.name} install command`}>
-						<code>{installCommand}</code>
-						<button type="button" onClick={() => copy('Install command', installCommand)}>
-							Copy command
-						</button>
-					</div>
 
 					<div className="workbench-controls" aria-label={`${activeComponent.name} controls`}>
 						{activeComponent.controls.map((control) =>
@@ -228,18 +253,7 @@ export function ComponentWorkbench({ sources }: ComponentWorkbenchProps) {
 
 						<div className="documentation">
 							<details>
-								<summary>Usage</summary>
-								<div className="code-panel">
-									<button type="button" onClick={() => copy('Usage', activeComponent.usage)}>
-										Copy usage
-									</button>
-									<pre>
-										<code>{activeComponent.usage}</code>
-									</pre>
-								</div>
-							</details>
-							<details>
-								<summary>Component source</summary>
+								<summary>React source</summary>
 								<div className="code-panel source-panel">
 									<button
 										type="button"
@@ -249,6 +263,17 @@ export function ComponentWorkbench({ sources }: ComponentWorkbenchProps) {
 									</button>
 									<pre>
 										<code>{sources[activeId].component}</code>
+									</pre>
+								</div>
+							</details>
+							<details>
+								<summary>Usage</summary>
+								<div className="code-panel">
+									<button type="button" onClick={() => copy('Usage', activeComponent.usage)}>
+										Copy usage
+									</button>
+									<pre>
+										<code>{activeComponent.usage}</code>
 									</pre>
 								</div>
 							</details>
@@ -264,6 +289,22 @@ export function ComponentWorkbench({ sources }: ComponentWorkbenchProps) {
 									<pre>
 										<code>{sources[activeId].styles}</code>
 									</pre>
+								</div>
+							</details>
+							<details className="install-details">
+								<summary>CLI install (optional)</summary>
+								<p>
+									Uses the shadcn-compatible installer to copy the same React and CSS files into
+									your project. Beautiful CSS is not a runtime dependency.
+								</p>
+								<div
+									className="install-command"
+									aria-label={`${activeComponent.name} install command`}
+								>
+									<code>{installCommand}</code>
+									<button type="button" onClick={() => copy('Install command', installCommand)}>
+										Copy command
+									</button>
 								</div>
 							</details>
 							<details>

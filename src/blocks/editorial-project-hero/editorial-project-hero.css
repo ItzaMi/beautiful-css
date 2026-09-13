@@ -114,14 +114,14 @@
 
 	.bc-editorial-hero__copy {
 		grid-template-rows: auto auto auto auto;
-		gap: 2.4rem;
+		gap: 1.5rem;
 		padding: 1.25rem;
 	}
 
 	.bc-editorial-hero__copy h1 {
-		max-width: 9ch;
-		margin: 2.5rem 0 1rem;
-		font-size: clamp(3.25rem, 16vw, 5.5rem);
+		max-width: none;
+		margin: 1.5rem 0 0.5rem;
+		font-size: clamp(2.55rem, 12.5vw, 4.8rem);
 	}
 
 	.bc-editorial-hero__summary {
@@ -134,6 +134,7 @@
 	}
 
 	.bc-editorial-hero__media {
-		min-height: 68svh;
+		min-height: 0;
+		aspect-ratio: 4 / 5;
 	}
 }

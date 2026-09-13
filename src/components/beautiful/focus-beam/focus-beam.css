@@ -45,3 +45,9 @@
 		transition: none;
 	}
 }
+
+@media (hover: none), (pointer: coarse) {
+	.bc-focus-beam__field {
+		display: none;
+	}
+}

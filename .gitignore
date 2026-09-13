@@ -6,6 +6,7 @@ playwright-report
 motion-report
 motion-artifacts
 behavior-report
+mobile-report
 test-results
 .env
 .env.*

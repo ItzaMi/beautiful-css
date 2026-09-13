@@ -40,9 +40,15 @@ Then open `http://localhost:3000`.
 
 ## Distribution
 
-`registry.json` makes the repository a shadcn-compatible GitHub source registry. The same component
-and CSS files are rendered in the catalogue and included in registry items, so there is no generated
-distribution copy to drift.
+Each library entry exposes the exact React and CSS files that render its preview. Copying those
+editable files is the primary distribution path, with no Beautiful CSS runtime package.
+
+### Optional automated installation
+
+`registry.json` also makes the repository compatible with the shadcn CLI. This is only a convenient
+file copier: it installs the same source into the consumer's repository and does not require
+shadcn-styled components. Because the catalogue and registry reference the same files, there is no
+generated distribution copy to drift.
 
 The current concept branch can be installed directly with:
 
@@ -76,6 +82,7 @@ yarn test:visual:update  # intentionally accept reviewed changes
 yarn test:visual:report  # inspect failures and image diffs
 yarn test:motion         # generate a review report with timed interaction frames
 yarn test:behavior       # semantic and interaction checks in Chromium, Firefox, and WebKit
+yarn test:mobile         # touch layouts at 320px, 390px, and 430px
 ```
 
 Add a focused block preview to `src/blocks/preview-registry.tsx`, then register its id in

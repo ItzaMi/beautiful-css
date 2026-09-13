@@ -80,10 +80,11 @@ lock on basic functionality.
 
 ### Optional installation tools
 
-Components are distributed as editable source through the catalogue and a shadcn-compatible GitHub
-registry. The registry is a delivery mechanism only; the files remain readable and copyable without
-it. Shared npm packages may be introduced later only for controller logic that genuinely benefits
-from versioned reuse.
+Components are distributed first as readable, editable source through the catalogue. A
+shadcn-compatible GitHub registry remains an optional delivery mechanism for developers who want a
+command to copy the same files into their repository; it is not a Beautiful CSS runtime, a design
+dependency, or the product's primary interface. Shared npm packages may be introduced later only
+for controller logic that genuinely benefits from versioned reuse.
 
 ## Design position
 
@@ -125,9 +126,13 @@ motion report must be reviewed for clipping, pacing, easing, and undesirable int
 
 ## Catalogue experience
 
-The catalogue is a working surface, not a wall of thumbnails. Visitors choose one component and
-experience it at a useful size, change real properties, try its keyboard behaviour, and inspect a
-small usage example without leaving the page.
+The homepage is a showcase. It demonstrates the components inside complete visual situations and
+keeps implementation documentation out of the main product story.
+
+The separate library is a working surface, not a wall of thumbnails. Visitors choose one component
+and experience it at a useful size, change real properties, try its keyboard behaviour, and inspect
+the exact source without leaving the page. On small touch screens, the library uses a native picker
+and explicit previous/next controls instead of reproducing a desktop tab rail.
 
 The website should keep one component in focus at a time. It must not imply quality through mock
 previews, decorative cards, or a large inventory count. The source shown in the catalogue is read

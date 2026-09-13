@@ -1,11 +1,7 @@
 import { LineReveal } from '@/components/beautiful';
-import { ComponentWorkbench } from '@/components/catalogue/component-workbench';
 import { BlockCollection } from '@/components/catalogue/block-collection';
-import { readComponentSources } from '@/data/sources';
 
-export default async function HomePage() {
-	const sources = await readComponentSources();
-
+export default function HomePage() {
 	return (
 		<>
 			<section className="hero" id="top">
@@ -25,15 +21,13 @@ export default async function HomePage() {
 						</p>
 						<div className="hero-proof">
 							<span>The heading is the component.</span>
-							<a href="#collection">Inspect its source</a>
+							<a href="/library">Browse the library</a>
 						</div>
 					</div>
 				</div>
 			</section>
 
-			<ComponentWorkbench sources={sources} />
-
-			<BlockCollection />
+			<BlockCollection mode="showcase" />
 
 			<section className="boundary" id="principles">
 				<h2>Bring the primitives you trust.</h2>

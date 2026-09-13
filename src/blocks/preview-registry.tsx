@@ -13,7 +13,7 @@ import { ProjectIndex } from './project-index/project-index';
 const blockPreviewRegistry: Record<string, ReactElement> = {
 	'editorial-project-hero': (
 		<EditorialProjectHero
-			imageSrc="/media-poster.svg"
+			imageSrc="/media-poster-art.svg"
 			imageAlt="Geometric architectural study in blue, black, and white"
 		/>
 	),

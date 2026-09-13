@@ -78,8 +78,10 @@ export function ProjectIndex({
 									aria-label={`View ${project.title}`}
 								/>
 							</h3>
-							<span>{project.type}</span>
-							<span>{project.location}</span>
+							<div className="bc-project-index__details">
+								<span>{project.type}</span>
+								<span>{project.location}</span>
+							</div>
 							<time>{project.year}</time>
 						</li>
 					))}

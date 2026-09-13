@@ -32,13 +32,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 		<html lang="en" className={instrumentSans.variable}>
 			<body>
 				<header className="site-header">
-					<Link className="brand" href="/#top">
+					<Link className="brand" href="/">
 						Beautiful CSS
 					</Link>
 					<nav aria-label="Primary navigation">
-						<Link href="/#collection">Components</Link>
-						<Link href="/#blocks">Blocks</Link>
-						<Link href="/#principles">Principles</Link>
+						<Link href="/">Showcase</Link>
+						<Link href="/library">Library</Link>
 						<a href="https://github.com/ItzaMi/beautiful-css" target="_blank" rel="noreferrer">
 							<span>GitHub</span>
 							<GithubIcon />

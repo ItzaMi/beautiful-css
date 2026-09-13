@@ -46,6 +46,10 @@
 	align-items: start;
 }
 
+.component-mobile-picker {
+	display: none;
+}
+
 .component-picker {
 	position: sticky;
 	top: 24px;
@@ -538,6 +542,19 @@
 	cursor: pointer;
 }
 
+.install-details > p {
+	max-width: 42rem;
+	margin: 0;
+	padding: 0.2rem 0 1rem;
+	color: #6f736c;
+	font-size: 0.66rem;
+	line-height: 1.6;
+}
+
+.install-details .install-command {
+	border-top-color: #e2e4de;
+}
+
 .code-panel {
 	position: relative;
 	padding: 1.2rem;
@@ -605,49 +622,77 @@
 @media (max-width: 850px) {
 	.explorer {
 		grid-template-columns: 1fr;
-		gap: 2rem;
+		gap: 1.25rem;
 	}
 
 	.component-picker {
-		position: static;
-		overflow: hidden;
+		display: none;
 	}
 
-	.component-picker > p {
-		padding: 0.8rem 0;
+	.component-mobile-picker {
+		display: grid;
+		gap: 0.7rem;
+		padding: 0.85rem 0;
+		background: #f7f7f5;
+		border-top: 1px solid #111310;
+		border-bottom: 1px solid #d9dbd5;
 	}
 
-	.component-picker nav {
-		display: flex;
-		overflow-x: auto;
-		padding-bottom: 0.55rem;
-		scroll-snap-type: x proximity;
-		scrollbar-color: #777b74 #d9dbd5;
-		scrollbar-width: thin;
+	.component-mobile-picker label {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr);
+		gap: 1rem;
+		align-items: center;
 	}
 
-	.component-picker nav::-webkit-scrollbar {
-		height: 2px;
+	.component-mobile-picker label span {
+		color: #747971;
+		font-size: 0.62rem;
 	}
 
-	.component-picker nav::-webkit-scrollbar-track {
-		background: #d9dbd5;
+	.component-mobile-picker select {
+		width: 100%;
+		min-height: 48px;
+		padding: 0 2.5rem 0 0.85rem;
+		color: #111310;
+		background: #edeee9;
+		border: 1px solid #c9ccc5;
+		border-radius: 0;
+		font: inherit;
+		font-size: 0.82rem;
 	}
 
-	.component-picker nav::-webkit-scrollbar-thumb {
-		background: #777b74;
+	.component-mobile-picker > div {
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		gap: 0.6rem;
+		align-items: center;
 	}
 
-	.component-picker button {
-		flex: 0 0 150px;
-		min-width: 150px;
-		padding-right: 1rem;
-		border-top-color: #d9dbd5;
-		scroll-snap-align: start;
+	.component-mobile-picker > div button {
+		min-height: 44px;
+		padding: 0 0.75rem;
+		color: #343832;
+		background: transparent;
+		border: 1px solid #c9ccc5;
+		font-size: 0.64rem;
 	}
 
-	.component-picker button:last-child {
-		border-bottom: 0;
+	.component-mobile-picker > div button:last-child {
+		justify-self: stretch;
+	}
+
+	.component-mobile-picker > div button:disabled {
+		color: #a2a69f;
+		cursor: default;
+	}
+
+	.component-mobile-picker > div span {
+		min-width: 2.8rem;
+		color: #858981;
+		font-size: 0.6rem;
+		text-align: center;
+		font-variant-numeric: tabular-nums;
 	}
 }
 
@@ -667,13 +712,32 @@
 	}
 
 	.workbench-header {
+		display: grid;
 		align-items: flex-start;
+		gap: 0;
+	}
+
+	.workbench-header h3 {
+		letter-spacing: 0;
 	}
 
 	.workbench-actions {
-		align-items: flex-end;
-		flex-direction: column;
-		gap: 0.35rem;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0.5rem;
+		width: 100%;
+		padding-bottom: 1rem;
+	}
+
+	.workbench-actions a,
+	.workbench-actions button {
+		display: grid;
+		place-items: center;
+		box-sizing: border-box;
+		min-height: 44px;
+		padding: 0.5rem 0.75rem;
+		border: 1px solid #c8cbc4;
+		text-decoration: none;
 	}
 
 	.install-command {

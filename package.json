@@ -16,7 +16,8 @@
 		"test:visual:report": "playwright show-report",
 		"test:motion": "playwright test --config playwright.motion.config.ts",
 		"test:behavior": "playwright test --config playwright.behavior.config.ts",
-		"validate": "yarn typecheck && yarn lint && yarn registry:validate && yarn registry:consumer && yarn build && yarn test:visual && yarn test:behavior"
+		"test:mobile": "playwright test --config playwright.mobile.config.ts",
+		"validate": "yarn typecheck && yarn lint && yarn registry:validate && yarn registry:consumer && yarn build && yarn test:visual && yarn test:behavior && yarn test:mobile"
 	},
 	"devDependencies": {
 		"@playwright/test": "1.63.0",

@@ -49,19 +49,13 @@
 
 .block-showcase__header {
 	display: grid;
-	grid-template-columns: 3rem minmax(0, 1fr) auto;
+	grid-template-columns: minmax(0, 1fr) auto;
 	gap: 1.5rem;
 	align-items: start;
 	width: min(1280px, calc(100% - 24px));
 	padding: 1rem 0 1.2rem;
 	margin: 0 auto;
 	border-top: 1px solid #111310;
-}
-
-.block-showcase__header > span {
-	color: #91958e;
-	font-size: 0.6rem;
-	font-variant-numeric: tabular-nums;
 }
 
 .block-showcase__header h3,
@@ -100,16 +94,42 @@
 	text-underline-offset: 0.25rem;
 }
 
-.block-showcase__command {
-	display: flex;
-	align-items: center;
+.block-showcase__install {
 	width: min(1280px, calc(100% - 24px));
-	min-height: 3rem;
 	margin: 0 auto;
 	border-top: 1px solid #d9dbd5;
+	border-bottom: 1px solid #d9dbd5;
 }
 
-.block-showcase__command code {
+.block-showcase__install summary {
+	padding: 0.9rem 0;
+	color: #61665e;
+	font-size: 0.62rem;
+	cursor: pointer;
+}
+
+.block-showcase__install > div {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	gap: 1rem;
+	align-items: center;
+	padding: 0.85rem 0 1rem;
+	border-top: 1px solid #e2e4de;
+}
+
+.block-showcase__install button {
+	padding: 0;
+	color: #61665e;
+	background: transparent;
+	border: 0;
+	font: inherit;
+	font-size: 0.6rem;
+	text-decoration: underline;
+	text-underline-offset: 0.25rem;
+}
+
+.block-showcase__install code {
+	display: block;
 	overflow: hidden;
 	color: #666b63;
 	font-size: 0.6rem;
@@ -134,7 +154,7 @@
 	}
 
 	.block-showcase__header {
-		grid-template-columns: 2rem minmax(0, 1fr);
+		grid-template-columns: minmax(0, 1fr) auto;
 		width: calc(100% - 20px);
 	}
 
@@ -142,7 +162,7 @@
 		grid-column: 2;
 	}
 
-	.block-showcase__command {
+	.block-showcase__install {
 		width: calc(100% - 20px);
 	}
 }

@@ -186,7 +186,7 @@ export function ComponentStage({
 			{id === 'media-shutter' && (
 				<div className="media-demo">
 					<MediaShutter
-						src="/media-poster.svg"
+						src="/media-poster-art.svg"
 						alt="Geometric study in blue, black, and white"
 						href="#media-shutter"
 						panes={numberValue(values, 'panes', 7)}

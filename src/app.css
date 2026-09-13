@@ -99,6 +99,57 @@ a {
 	background: #e9ebff;
 }
 
+.library-intro {
+	display: grid;
+	grid-template-columns: minmax(0, 1.5fr) minmax(18rem, 0.5fr);
+	gap: clamp(3rem, 8vw, 8rem);
+	align-items: end;
+	width: min(1280px, calc(100% - 48px));
+	padding: clamp(5rem, 10vw, 9rem) 0 clamp(4rem, 8vw, 7rem);
+	margin: 0 auto;
+	border-bottom: 1px solid #d9dbd5;
+}
+
+.library-intro > p,
+.library-intro h1,
+.library-intro div p,
+.library-intro div span {
+	margin: 0;
+}
+
+.library-intro > p {
+	align-self: start;
+	color: #777b74;
+	font-size: 0.67rem;
+}
+
+.library-intro h1 {
+	grid-row: 2;
+	max-width: 10ch;
+	font-size: clamp(3.2rem, 7vw, 7.2rem);
+	font-weight: 540;
+	line-height: 0.91;
+	letter-spacing: -0.07em;
+}
+
+.library-intro div {
+	display: grid;
+	gap: 1.2rem;
+	grid-column: 2;
+	grid-row: 2;
+}
+
+.library-intro div p {
+	color: #62675f;
+	font-size: 0.76rem;
+	line-height: 1.65;
+}
+
+.library-intro div span {
+	color: #8a8e86;
+	font-size: 0.62rem;
+}
+
 .hero-content {
 	display: grid;
 	grid-template-rows: auto 1fr auto;
@@ -251,7 +302,7 @@ a {
 		gap: 1rem;
 	}
 
-	.site-header nav a:nth-child(2),
+	.site-header nav a:first-child,
 	.site-header nav a span {
 		display: none;
 	}
@@ -268,7 +319,7 @@ a {
 	}
 
 	.hero h1 {
-		font-size: clamp(3.1rem, 14vw, 5.5rem);
+		font-size: clamp(2.55rem, 13.5vw, 5.5rem);
 		letter-spacing: -0.07em;
 	}
 
@@ -284,6 +335,23 @@ a {
 
 	.hero-bottom p {
 		max-width: 320px;
+	}
+
+	.library-intro {
+		grid-template-columns: 1fr;
+		gap: 2rem;
+		width: calc(100% - 28px);
+		padding: 4rem 0 3.5rem;
+	}
+
+	.library-intro h1,
+	.library-intro div {
+		grid-row: auto;
+		grid-column: 1;
+	}
+
+	.library-intro h1 {
+		font-size: clamp(3.1rem, 15vw, 4.8rem);
 	}
 
 	.boundary {

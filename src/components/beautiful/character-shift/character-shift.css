@@ -11,10 +11,27 @@
 .bc-character-shift__phrase {
 	display: block;
 	grid-area: 1 / 1;
-	overflow-wrap: anywhere;
+	overflow-wrap: break-word;
 	transition:
 		clip-path var(--character-duration) cubic-bezier(0.22, 1, 0.36, 1),
 		transform var(--character-duration) cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: none), (pointer: coarse) {
+	.bc-character-shift__phrase {
+		transition: none;
+	}
+
+	.bc-character-shift__phrase.is-source,
+	.bc-character-shift:hover .bc-character-shift__phrase.is-source,
+	.bc-character-shift:focus-visible .bc-character-shift__phrase.is-source {
+		clip-path: none;
+		transform: none;
+	}
+
+	.bc-character-shift__phrase.is-target {
+		display: none;
+	}
 }
 
 .bc-character-shift__phrase.is-target {

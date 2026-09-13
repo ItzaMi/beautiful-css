@@ -53,10 +53,19 @@
 }
 
 .component-picker > p {
+	display: flex;
+	justify-content: space-between;
 	margin: 0;
 	padding: 1rem 0 1.2rem;
+	color: #666a63;
 	font-size: 0.66rem;
 	font-weight: 600;
+}
+
+.component-picker > p span:last-child {
+	color: #989c94;
+	font-weight: 450;
+	font-variant-numeric: tabular-nums;
 }
 
 .component-picker nav {
@@ -142,11 +151,83 @@
 	letter-spacing: -0.03em;
 }
 
-.workbench-header a {
+.workbench-actions {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
 	padding-bottom: 1rem;
+}
+
+.workbench-actions a,
+.workbench-actions button {
 	color: #696d66;
+	background: transparent;
+	border: 0;
+	font: inherit;
 	font-size: 0.6rem;
+	text-decoration: underline;
 	text-underline-offset: 0.25rem;
+}
+
+.workbench-actions a {
+	padding: 0;
+}
+
+.workbench-actions button {
+	padding: 0;
+	cursor: pointer;
+}
+
+.install-command {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	gap: 1rem;
+	align-items: center;
+	min-height: 54px;
+	border-top: 1px solid #d9dbd5;
+}
+
+.install-command code {
+	overflow: hidden;
+	color: #4f534d;
+	font-size: 0.62rem;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.install-command button {
+	padding: 0.42rem 0.5rem;
+	color: #3f433d;
+	background: #f7f7f5;
+	border: 1px solid #c8cbc4;
+	border-radius: 2px;
+	font: inherit;
+	font-size: 0.58rem;
+	cursor: pointer;
+}
+
+.workbench-actions a,
+.workbench-actions button,
+.install-command button {
+	transition:
+		color 160ms ease,
+		border-color 160ms ease;
+}
+
+.workbench-actions a:hover,
+.workbench-actions button:hover {
+	color: #111310;
+}
+
+.install-command button:hover {
+	border-color: #777b74;
+}
+
+.workbench-actions a:focus-visible,
+.workbench-actions button:focus-visible,
+.install-command button:focus-visible {
+	outline: 2px solid #405cff;
+	outline-offset: 3px;
 }
 
 .workbench-controls {
@@ -529,23 +610,40 @@
 
 	.component-picker {
 		position: static;
-		overflow-x: auto;
+		overflow: hidden;
 	}
 
 	.component-picker > p {
-		display: none;
+		padding: 0.8rem 0;
 	}
 
 	.component-picker nav {
 		display: flex;
-		width: max-content;
-		min-width: 100%;
+		overflow-x: auto;
+		padding-bottom: 0.55rem;
+		scroll-snap-type: x proximity;
+		scrollbar-color: #777b74 #d9dbd5;
+		scrollbar-width: thin;
+	}
+
+	.component-picker nav::-webkit-scrollbar {
+		height: 2px;
+	}
+
+	.component-picker nav::-webkit-scrollbar-track {
+		background: #d9dbd5;
+	}
+
+	.component-picker nav::-webkit-scrollbar-thumb {
+		background: #777b74;
 	}
 
 	.component-picker button {
+		flex: 0 0 150px;
 		min-width: 150px;
 		padding-right: 1rem;
 		border-top-color: #d9dbd5;
+		scroll-snap-align: start;
 	}
 
 	.component-picker button:last-child {
@@ -569,7 +667,17 @@
 	}
 
 	.workbench-header {
-		align-items: center;
+		align-items: flex-start;
+	}
+
+	.workbench-actions {
+		align-items: flex-end;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+
+	.install-command {
+		min-height: 62px;
 	}
 
 	.workbench-controls {

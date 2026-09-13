@@ -5,6 +5,7 @@ node_modules
 playwright-report
 motion-report
 motion-artifacts
+behavior-report
 test-results
 .env
 .env.*

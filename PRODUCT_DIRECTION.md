@@ -111,7 +111,9 @@ It must:
 5. clean up timers, listeners, and animation frames;
 6. remain compatible with existing UI primitives;
 7. include a realistic usage example;
-8. be tested in the actual catalogue, not represented by a fake preview.
+8. be tested in the actual catalogue, not represented by a fake preview;
+9. install and compile in a clean consumer through the real distribution path;
+10. preserve semantics and interaction behavior in Chromium, Firefox, and WebKit.
 
 Every component and block also has an isolated preview route. Playwright captures desktop,
 mobile/touch, reduced-motion, and meaningful interaction states. Baseline changes are reviewed as

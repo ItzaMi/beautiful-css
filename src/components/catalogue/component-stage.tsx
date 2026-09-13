@@ -36,6 +36,12 @@ const booleanValue = (values: Record<string, ControlValue>, key: string, fallbac
 	return typeof value === 'boolean' ? value : fallback;
 };
 
+function countProbeEvent(element: HTMLElement, name: string) {
+	const attribute = `data-consumer-${name}`;
+	const count = Number(element.getAttribute(attribute) ?? 0);
+	element.setAttribute(attribute, String(count + 1));
+}
+
 export function ComponentStage({
 	id,
 	values,
@@ -49,6 +55,7 @@ export function ComponentStage({
 			: id === 'signal-marquee'
 				? 'signal'
 				: 'ink';
+	const eventProbe = scenario === 'event-probe';
 
 	return (
 		<div
@@ -103,6 +110,12 @@ export function ComponentStage({
 						count={scenario === 'dense' ? 90 : numberValue(values, 'count', 54)}
 						color={stringValue(values, 'color', '#8fa1ff')}
 						strength={scenario === 'dense' ? 1.35 : numberValue(values, 'strength', 1)}
+						onPointerMove={
+							eventProbe ? (event) => countProbeEvent(event.currentTarget, 'moves') : undefined
+						}
+						onPointerLeave={
+							eventProbe ? (event) => countProbeEvent(event.currentTarget, 'leaves') : undefined
+						}
 					/>
 					<div>
 						<strong>Move through the field.</strong>
@@ -117,6 +130,18 @@ export function ComponentStage({
 						color={stringValue(values, 'color', '#405cff')}
 						radius={scenario === 'tight' ? 160 : numberValue(values, 'radius', 300)}
 						intensity={numberValue(values, 'intensity', 0.24)}
+						onPointerMove={
+							eventProbe ? (event) => countProbeEvent(event.currentTarget, 'moves') : undefined
+						}
+						onPointerLeave={
+							eventProbe ? (event) => countProbeEvent(event.currentTarget, 'leaves') : undefined
+						}
+						onFocus={
+							eventProbe ? (event) => countProbeEvent(event.currentTarget, 'focuses') : undefined
+						}
+						onBlur={
+							eventProbe ? (event) => countProbeEvent(event.currentTarget, 'blurs') : undefined
+						}
 					>
 						<nav aria-label="Example project index">
 							<a href="#focus-beam">
@@ -143,6 +168,12 @@ export function ComponentStage({
 						rows={scenario === 'dense' ? 12 : numberValue(values, 'rows', 7)}
 						color={stringValue(values, 'color', '#405cff')}
 						reach={scenario === 'dense' ? 120 : numberValue(values, 'reach', 170)}
+						onPointerMove={
+							eventProbe ? (event) => countProbeEvent(event.currentTarget, 'moves') : undefined
+						}
+						onPointerLeave={
+							eventProbe ? (event) => countProbeEvent(event.currentTarget, 'leaves') : undefined
+						}
 					/>
 					<p>
 						Proximity

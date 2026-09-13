@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState, type ChangeEvent } from 'react';
+import { useEffect, useMemo, useRef, useState, type ChangeEvent } from 'react';
 import {
 	componentCatalog,
 	type ComponentControl,
@@ -21,31 +21,49 @@ export function ComponentWorkbench({ sources }: ComponentWorkbenchProps) {
 	});
 	const [replayKey, setReplayKey] = useState(0);
 	const [copyStatus, setCopyStatus] = useState('');
+	const pickerRef = useRef<HTMLElement>(null);
 	const activeComponent = useMemo(
 		() => componentCatalog.find((component) => component.id === activeId) ?? componentCatalog[0],
 		[activeId]
 	);
+	const activeIndex = componentCatalog.findIndex((component) => component.id === activeId);
+	const installCommand = `npx shadcn@latest add ItzaMi/beautiful-css/${activeId}#concept/visual-component-library`;
 
 	useEffect(() => {
-		function selectFromHash() {
+		function selectFromLocation() {
 			const candidate = window.location.hash.slice(1);
 			const component = componentCatalog.find((item) => item.id === candidate);
 			if (!component) return;
 			setActiveId(component.id);
 			setValues({ ...component.defaultValues });
+			setCopyStatus('');
 		}
 
-		selectFromHash();
-		window.addEventListener('hashchange', selectFromHash);
-		return () => window.removeEventListener('hashchange', selectFromHash);
+		selectFromLocation();
+		window.addEventListener('hashchange', selectFromLocation);
+		window.addEventListener('popstate', selectFromLocation);
+		return () => {
+			window.removeEventListener('hashchange', selectFromLocation);
+			window.removeEventListener('popstate', selectFromLocation);
+		};
 	}, []);
+
+	useEffect(() => {
+		const picker = pickerRef.current;
+		const activeButton = picker?.querySelector<HTMLElement>(`[data-component-id="${activeId}"]`);
+		if (picker && activeButton && picker.scrollWidth > picker.clientWidth) {
+			activeButton.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+		}
+	}, [activeId]);
 
 	function selectComponent(id: ComponentId) {
 		const component = componentCatalog.find((item) => item.id === id) ?? componentCatalog[0];
 		setActiveId(component.id);
 		setValues({ ...component.defaultValues });
 		setCopyStatus('');
-		window.history.replaceState(null, '', `#${id}`);
+		if (window.location.hash !== `#${id}`) {
+			window.history.pushState({ component: id }, '', `#${id}`);
+		}
 	}
 
 	function updateControl(
@@ -72,6 +90,12 @@ export function ComponentWorkbench({ sources }: ComponentWorkbenchProps) {
 		}
 	}
 
+	function copyComponentLink() {
+		const url = new URL(window.location.href);
+		url.hash = activeId;
+		void copy('Component link', url.toString());
+	}
+
 	return (
 		<section className="collection" id="collection">
 			<header className="collection-intro">
@@ -86,13 +110,19 @@ export function ComponentWorkbench({ sources }: ComponentWorkbenchProps) {
 
 			<div className="explorer">
 				<aside className="component-picker">
-					<p>First collection</p>
-					<nav aria-label="Choose a component">
+					<p>
+						<span>First collection</span>
+						<span>
+							{activeIndex + 1} of {componentCatalog.length}
+						</span>
+					</p>
+					<nav aria-label="Choose a component" ref={pickerRef}>
 						{componentCatalog.map((component) => (
 							<button
 								type="button"
 								className={component.id === activeId ? 'is-active' : ''}
 								aria-pressed={component.id === activeId}
+								data-component-id={component.id}
 								onClick={() => selectComponent(component.id)}
 								key={component.id}
 							>
@@ -112,10 +142,22 @@ export function ComponentWorkbench({ sources }: ComponentWorkbenchProps) {
 							<p>{activeComponent.category} component</p>
 							<h3 id="active-component-name">{activeComponent.name}</h3>
 						</div>
-						<a href={`/preview/component/${activeId}`} target="_blank" rel="noreferrer">
-							Open isolated preview
-						</a>
+						<div className="workbench-actions">
+							<button type="button" onClick={copyComponentLink}>
+								Copy link
+							</button>
+							<a href={`/preview/component/${activeId}`} target="_blank" rel="noreferrer">
+								Open preview
+							</a>
+						</div>
 					</header>
+
+					<div className="install-command" aria-label={`${activeComponent.name} install command`}>
+						<code>{installCommand}</code>
+						<button type="button" onClick={() => copy('Install command', installCommand)}>
+							Copy command
+						</button>
+					</div>
 
 					<div className="workbench-controls" aria-label={`${activeComponent.name} controls`}>
 						{activeComponent.controls.map((control) =>

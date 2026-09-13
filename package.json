@@ -10,11 +10,13 @@
 		"lint": "eslint . && prettier --check .",
 		"format": "eslint . --fix && prettier --write .",
 		"registry:validate": "shadcn registry validate",
+		"registry:consumer": "node scripts/validate-consumer.mjs",
 		"test:visual": "playwright test",
 		"test:visual:update": "playwright test --update-snapshots",
 		"test:visual:report": "playwright show-report",
 		"test:motion": "playwright test --config playwright.motion.config.ts",
-		"validate": "yarn typecheck && yarn lint && yarn registry:validate && yarn build && yarn test:visual"
+		"test:behavior": "playwright test --config playwright.behavior.config.ts",
+		"validate": "yarn typecheck && yarn lint && yarn registry:validate && yarn registry:consumer && yarn build && yarn test:visual && yarn test:behavior"
 	},
 	"devDependencies": {
 		"@playwright/test": "1.63.0",

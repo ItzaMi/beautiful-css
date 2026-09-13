@@ -27,6 +27,7 @@ so that future framework adapters can share the effect without pretending untest
 
 ```bash
 yarn install
+yarn playwright install chromium firefox webkit
 yarn dev
 ```
 
@@ -38,13 +39,18 @@ Then open `http://localhost:3000`.
 and CSS files are rendered in the catalogue and included in registry items, so there is no generated
 distribution copy to drift.
 
-After the repository is public, an item can be installed with:
+The current concept branch can be installed directly with:
 
 ```bash
-npx shadcn@latest add ItzaMi/beautiful-css/line-reveal
+npx shadcn@latest add ItzaMi/beautiful-css/line-reveal#concept/visual-component-library
 ```
 
-Complete source remains copyable from the catalogue without the CLI.
+The branch suffix can be removed after the registry reaches the default branch. Complete source
+remains copyable from the catalogue without the CLI.
+
+`yarn registry:consumer` builds the current registry, installs all eight items with the real shadcn
+CLI into a disposable Next app, verifies every delivered file, and compiles that consumer. A GitHub
+ref can be checked with `yarn registry:consumer --github-ref <branch-or-commit>`.
 
 ## Visual validation
 
@@ -56,6 +62,7 @@ yarn test:visual
 yarn test:visual:update  # intentionally accept reviewed changes
 yarn test:visual:report  # inspect failures and image diffs
 yarn test:motion         # generate a review report with timed interaction frames
+yarn test:behavior       # semantic and interaction checks in Chromium, Firefox, and WebKit
 ```
 
 Blocks use the same harness. Add a focused preview to `src/blocks/preview-registry.tsx`, then register
@@ -77,4 +84,5 @@ yarn test:visual
 
 ## Project state
 
-The React catalogue and source registry are currently local. They have not been deployed.
+The React catalogue and source registry are on `concept/visual-component-library`. They have not
+been merged or deployed.
